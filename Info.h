@@ -179,6 +179,7 @@ namespace prakt {
 			this->MaximizeBox = false;
 			this->Name = L"Info";
 			this->Text = L"Контакная инфомрация";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Info::Info_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
@@ -188,5 +189,10 @@ namespace prakt {
 		this->Hide();
 		obj->Show();
 	}
+private: System::Void Info_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	if (e->CloseReason == CloseReason::UserClosing) {
+		Application::Exit();
+	}
+}
 };
 }

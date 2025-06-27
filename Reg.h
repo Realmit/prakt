@@ -262,6 +262,7 @@ namespace prakt {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Reg";
 			this->Text = L"Панель администратора";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Reg::Reg_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Reg::Reg_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -343,7 +344,7 @@ private: System::Void buttonadd_Click(System::Object^ sender, System::EventArgs^
 			buttonremove->Enabled = false; buttonadd->Enabled = false;
 			label3->Visible = false;
 			FILE* f = fopen("loginf.txt", "a");
-			fprintf(f, "\n%s\n|%s\n|0", Convert::ToString(textBox1->Text), Convert::ToString(textBox2->Text));
+			fprintf(f, "%s\n|%s\n|0\n", Convert::ToString(textBox1->Text), Convert::ToString(textBox2->Text));
 			fclose(f);
 			textBox1->Text = ""; textBox2->Text = "";
 		}
@@ -462,6 +463,11 @@ private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::E
 private: System::Void Reg_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void Reg_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	if (e->CloseReason == CloseReason::UserClosing) {
+		Application::Exit();
+	}
 }
 };
 }

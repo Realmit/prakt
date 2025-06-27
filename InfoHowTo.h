@@ -108,6 +108,7 @@ namespace prakt {
 			this->label1->TabIndex = 12;
 			this->label1->Text = L"Автобусный автопарк";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->label1->Click += gcnew System::EventHandler(this, &InfoHowTo::label1_Click);
 			// 
 			// buttoneula
 			// 
@@ -148,6 +149,7 @@ namespace prakt {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"InfoHowTo";
 			this->Text = L"Справочная информация";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &InfoHowTo::InfoHowTo_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &InfoHowTo::InfoHowTo_Load);
 			this->ResumeLayout(false);
 
@@ -164,5 +166,12 @@ namespace prakt {
 		EULA^ obj1 = gcnew EULA(this);
 		obj1->ShowDialog();
 	}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void InfoHowTo_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	if (e->CloseReason == CloseReason::UserClosing) {
+		Application::Exit();
+	}
+}
 };
 }

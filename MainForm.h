@@ -249,7 +249,7 @@ private: System::Void buttonnologin_Click(System::Object^ sender, System::EventA
 	obj3->ShowDialog();
 }
 private: System::Void buttonexit_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Close();
+	System::Windows::Forms::Application::Exit();
 }
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }

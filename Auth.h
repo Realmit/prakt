@@ -38,6 +38,8 @@ namespace prakt {
 
 	public:
 		int adminmodelocal = 0;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	public:
 		Form^ obj;
 		Auth(void)
 		{
@@ -105,6 +107,8 @@ namespace prakt {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->buttonchecklogin = (gcnew System::Windows::Forms::Button());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// buttonauthconfirm
@@ -198,7 +202,7 @@ namespace prakt {
 			this->buttonbacktomain->Location = System::Drawing::Point(11, 137);
 			this->buttonbacktomain->Margin = System::Windows::Forms::Padding(2);
 			this->buttonbacktomain->Name = L"buttonbacktomain";
-			this->buttonbacktomain->Size = System::Drawing::Size(140, 58);
+			this->buttonbacktomain->Size = System::Drawing::Size(179, 58);
 			this->buttonbacktomain->TabIndex = 8;
 			this->buttonbacktomain->Text = L"Назад";
 			this->buttonbacktomain->UseVisualStyleBackColor = true;
@@ -206,13 +210,13 @@ namespace prakt {
 			// 
 			// label4
 			// 
-			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
 			this->label4->ForeColor = System::Drawing::Color::Red;
-			this->label4->Location = System::Drawing::Point(315, 9);
+			this->label4->Location = System::Drawing::Point(322, 13);
 			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(180, 63);
+			this->label4->Size = System::Drawing::Size(161, 63);
 			this->label4->TabIndex = 9;
 			this->label4->Text = L"НЕВЕРНЫЙ ПАРОЛЬ\r\n";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -230,10 +234,10 @@ namespace prakt {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
 			this->label3->ForeColor = System::Drawing::Color::LimeGreen;
-			this->label3->Location = System::Drawing::Point(320, 9);
+			this->label3->Location = System::Drawing::Point(325, 13);
 			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(169, 63);
+			this->label3->Size = System::Drawing::Size(153, 63);
 			this->label3->TabIndex = 10;
 			this->label3->Text = L"ПРОФИЛЬ НАЙДЕН";
 			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -258,26 +262,36 @@ namespace prakt {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
 			this->label5->ForeColor = System::Drawing::Color::Gold;
-			this->label5->Location = System::Drawing::Point(315, 9);
+			this->label5->Location = System::Drawing::Point(324, 13);
 			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(180, 63);
+			this->label5->Size = System::Drawing::Size(155, 63);
 			this->label5->TabIndex = 12;
 			this->label5->Text = L"ЛОГИН НЕ НАЙДЕН";
 			this->label5->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label5->Visible = false;
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->pictureBox1->Location = System::Drawing::Point(321, 9);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(163, 70);
+			this->pictureBox1->TabIndex = 81;
+			this->pictureBox1->TabStop = false;
 			// 
 			// Auth
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->ClientSize = System::Drawing::Size(495, 212);
+			this->ClientSize = System::Drawing::Size(495, 202);
 			this->ControlBox = false;
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->buttonchecklogin);
-			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->buttonchecklogin);
 			this->Controls->Add(this->buttonbacktomain);
 			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->label2);
@@ -291,7 +305,9 @@ namespace prakt {
 			this->MaximizeBox = false;
 			this->Name = L"Auth";
 			this->Text = L"Авторизация";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Auth::Auth_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Auth::Auth_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -407,6 +423,11 @@ private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void label4_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void Auth_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void Auth_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	if (e->CloseReason == CloseReason::UserClosing) {
+		Application::Exit();
+	}
 }
 };
 }

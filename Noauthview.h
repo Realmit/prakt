@@ -104,6 +104,7 @@ namespace prakt {
 			this->MaximizeBox = false;
 			this->Name = L"Noauthview";
 			this->Text = L"Просмотр без авторизации";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Noauthview::Noauthview_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Noauthview::Noauthview_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -152,5 +153,10 @@ namespace prakt {
 			column->SortMode = DataGridViewColumnSortMode::Programmatic;
 		}
 	}
-	};
+private: System::Void Noauthview_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	if (e->CloseReason == CloseReason::UserClosing) {
+		Application::Exit();
+	}
+}
+};
 }

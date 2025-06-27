@@ -129,6 +129,7 @@ namespace prakt {
 			this->Controls->Add(this->buttonbacktomain);
 			this->Name = L"EULA";
 			this->Text = L"EULA";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &EULA::EULA_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &EULA::EULA_Load);
 			this->ResumeLayout(false);
 
@@ -145,6 +146,11 @@ namespace prakt {
 		else buttoneng->Text = "ENG";
 		richTextBox2->Visible = !richTextBox2->Visible;
 		richTextBox1->Visible = !richTextBox1->Visible;
+}
+private: System::Void EULA_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	if (e->CloseReason == CloseReason::UserClosing) {
+		Application::Exit();
+	}
 }
 };
 }
