@@ -1153,6 +1153,7 @@ private: System::Void Authview_FormClosing(System::Object^ sender, System::Windo
 	}
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	Random^ rand = gcnew Random();
 	if (a1)
 	{
 		if (this->BackColor == System::Drawing::SystemColors::ControlDark)
@@ -1163,6 +1164,11 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 			this->BackColor = System::Drawing::Color::LimeGreen;
 		else if (this->BackColor == System::Drawing::Color::LimeGreen)
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
+		int offsetX = (rand->Next(700, 1500) - 700); // -10 to +10
+		int offsetY = (rand->Next(700, 1500) - 700);
+
+		this->StartPosition = FormStartPosition::Manual;
+		this->SetDesktopLocation(offsetX, offsetY);
 	}
 }
 private: System::Void buttonepilepsy_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1186,7 +1192,7 @@ private: System::Void buttonepilepsy_Click(System::Object^ sender, System::Event
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (currentVolume != 0)
 	{
-		currentVolume -= 100;
+		currentVolume -= 50;
 		// Send command to MCI
 		wchar_t cmd[128];
 		swprintf(cmd, 128, L"setaudio mp3file volume to %d", currentVolume);
@@ -1197,7 +1203,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	
 	if (currentVolume != 1000)
 	{
-		currentVolume += 100;
+		currentVolume += 50;
 		// Send command to MCI
 		wchar_t cmd[128];
 		swprintf(cmd, 128, L"setaudio mp3file volume to %d", currentVolume);
