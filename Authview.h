@@ -883,12 +883,12 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonepilepsy->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonepilepsy->Location = System::Drawing::Point(445, 379);
+			this->buttonepilepsy->Location = System::Drawing::Point(518, 379);
 			this->buttonepilepsy->Margin = System::Windows::Forms::Padding(2);
 			this->buttonepilepsy->Name = L"buttonepilepsy";
-			this->buttonepilepsy->Size = System::Drawing::Size(162, 58);
+			this->buttonepilepsy->Size = System::Drawing::Size(89, 58);
 			this->buttonepilepsy->TabIndex = 83;
-			this->buttonepilepsy->Text = L"Г*йская кнопка";
+			this->buttonepilepsy->Text = L"🌈";
 			this->buttonepilepsy->UseVisualStyleBackColor = true;
 			this->buttonepilepsy->Click += gcnew System::EventHandler(this, &Authview::buttonepilepsy_Click);
 			// 
@@ -896,7 +896,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->button1->Location = System::Drawing::Point(359, 380);
+			this->button1->Location = System::Drawing::Point(432, 380);
 			this->button1->Margin = System::Windows::Forms::Padding(2);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(82, 58);
@@ -909,7 +909,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->button2->Location = System::Drawing::Point(273, 379);
+			this->button2->Location = System::Drawing::Point(346, 380);
 			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(82, 58);
@@ -1015,11 +1015,15 @@ private: System::ComponentModel::IContainer^ components;
 	private: System::Void Authview_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ClientSize = System::Drawing::Size(1400, 450);
 		if (adminmodelocal == 1) {
+			button1->Visible = true;
+			button2->Visible = true;
 			buttonadminreg->Visible = true;
 			buttonload->Visible = true;
 			buttonepilepsy->Visible = true;
 		}
 		else {
+			button1->Visible = false;
+			button2->Visible = false;
 			buttonadminreg->Visible = false;
 			buttonload->Visible = false;
 			buttonepilepsy->Visible = false;
@@ -1164,11 +1168,13 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 			this->BackColor = System::Drawing::Color::LimeGreen;
 		else if (this->BackColor == System::Drawing::Color::LimeGreen)
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
-		int offsetX = (rand->Next(700, 1500) - 700); // -10 to +10
-		int offsetY = (rand->Next(700, 1500) - 700);
-
-		this->StartPosition = FormStartPosition::Manual;
-		this->SetDesktopLocation(offsetX, offsetY);
+		if (buttonsearch->Enabled == true)
+		{
+			int offsetX = (rand->Next(500, 600) - 10); // -10 to +10
+			int offsetY = (rand->Next(500, 600) - 10);
+			this->StartPosition = FormStartPosition::Manual;
+			this->SetDesktopLocation(offsetX, offsetY);
+		}
 	}
 }
 private: System::Void buttonepilepsy_Click(System::Object^ sender, System::EventArgs^ e) {
