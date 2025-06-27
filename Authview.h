@@ -1,4 +1,7 @@
 ﻿#include "Reg.h"
+#include <mmsystem.h>
+#include <windows.h>
+#pragma comment(lib, "winmm.lib")
 #pragma once
 namespace prakt {
 
@@ -17,7 +20,7 @@ namespace prakt {
 	public ref class Authview : public System::Windows::Forms::Form
 	{
 	public:
-		Form^ obj;
+		Form^ obj; int a1 = 0;
 	private: System::Windows::Forms::Button^ buttonload;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ buttonsearch;
@@ -117,6 +120,9 @@ namespace prakt {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::TextBox^ textBoxsost;
 	private: System::Windows::Forms::TextBox^ textBoxlost;
+private: System::Windows::Forms::Timer^ timer1;
+private: System::Windows::Forms::Button^ buttonepilepsy;
+
 	public:
 		int adminmodelocal = 0;
 		Authview(void)
@@ -146,6 +152,7 @@ namespace prakt {
 	private: System::Windows::Forms::Button^ buttonbacktomain;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ buttonadminreg;
+private: System::ComponentModel::IContainer^ components;
 
 
 	protected:
@@ -154,7 +161,7 @@ namespace prakt {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -163,6 +170,7 @@ namespace prakt {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Authview::typeid));
 			this->buttonbacktomain = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
@@ -209,6 +217,8 @@ namespace prakt {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->textBoxsost = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxlost = (gcnew System::Windows::Forms::TextBox());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->buttonepilepsy = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -858,6 +868,25 @@ namespace prakt {
 			this->textBoxlost->Visible = false;
 			this->textBoxlost->TextChanged += gcnew System::EventHandler(this, &Authview::textBoxlost_TextChanged);
 			// 
+			// timer1
+			// 
+			this->timer1->Enabled = true;
+			this->timer1->Interval = 50;
+			this->timer1->Tick += gcnew System::EventHandler(this, &Authview::timer1_Tick);
+			// 
+			// buttonepilepsy
+			// 
+			this->buttonepilepsy->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttonepilepsy->Location = System::Drawing::Point(445, 379);
+			this->buttonepilepsy->Margin = System::Windows::Forms::Padding(2);
+			this->buttonepilepsy->Name = L"buttonepilepsy";
+			this->buttonepilepsy->Size = System::Drawing::Size(162, 58);
+			this->buttonepilepsy->TabIndex = 83;
+			this->buttonepilepsy->Text = L"Гейская кнопка";
+			this->buttonepilepsy->UseVisualStyleBackColor = true;
+			this->buttonepilepsy->Click += gcnew System::EventHandler(this, &Authview::buttonepilepsy_Click);
+			// 
 			// Authview
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -865,6 +894,7 @@ namespace prakt {
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(1824, 449);
 			this->ControlBox = false;
+			this->Controls->Add(this->buttonepilepsy);
 			this->Controls->Add(this->textBoxlost);
 			this->Controls->Add(this->textBoxsost);
 			this->Controls->Add(this->pictureBox1);
@@ -954,10 +984,12 @@ namespace prakt {
 		if (adminmodelocal == 1) {
 			buttonadminreg->Visible = true;
 			buttonload->Visible = true;
+			buttonepilepsy->Visible = true;
 		}
 		else {
 			buttonadminreg->Visible = false;
 			buttonload->Visible = false;
+			buttonepilepsy->Visible = false;
 		}
 		LoadDataFromFile("auto.txt");
 		for each (DataGridViewColumn ^ column in dataGridView1->Columns)
@@ -1086,6 +1118,37 @@ private: System::Void Authview_FormClosing(System::Object^ sender, System::Windo
 	if (e->CloseReason == CloseReason::UserClosing) {
 		Application::Exit();
 	}
+}
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	if (a1)
+	{
+		if (this->BackColor == System::Drawing::SystemColors::ControlDark)
+			this->BackColor = System::Drawing::Color::Gold;
+		else if (this->BackColor == System::Drawing::Color::Gold)
+			this->BackColor = System::Drawing::Color::Red;
+		else if (this->BackColor == System::Drawing::Color::Red)
+			this->BackColor = System::Drawing::Color::LimeGreen;
+		else if (this->BackColor == System::Drawing::Color::LimeGreen)
+			this->BackColor = System::Drawing::SystemColors::ControlDark;
+	}
+}
+private: System::Void buttonepilepsy_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (!a1)
+	{
+		a1 = 1;
+		std::wstring musicPath = L"C:\\Users\\Realm\\source\\repos\\prakt\\7067831663128349441.mp3";
+		std::wstring openCmd = L"open \"" + musicPath + L"\" type mpegvideo alias mp3file";
+		mciSendString(openCmd.c_str(), nullptr, 0, nullptr);
+		mciSendString(L"play mp3file repeat", nullptr, 0, nullptr);
+	}
+	else
+	{
+		a1 = 0;
+		mciSendString(L"stop mp3file", nullptr, 0, nullptr);
+		mciSendString(L"close mp3file", nullptr, 0, nullptr);
+		this->BackColor = System::Drawing::SystemColors::ControlDark;
+	}
+	
 }
 };
 }
