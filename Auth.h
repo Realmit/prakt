@@ -148,6 +148,7 @@ namespace prakt {
 			this->textBox2->TabIndex = 4;
 			this->textBox2->UseSystemPasswordChar = true;
 			this->textBox2->Visible = false;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Auth::textBox2_TextChanged);
 			// 
 			// label1
 			// 
@@ -428,6 +429,8 @@ private: System::Void Auth_FormClosing(System::Object^ sender, System::Windows::
 	if (e->CloseReason == CloseReason::UserClosing) {
 		Application::Exit();
 	}
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
