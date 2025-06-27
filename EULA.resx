@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ (ОФЕРТА)
+для приложения для ОС Windows "Автобусный автопарк 'Блеклист' города Гомель"
+
+1. ОБЩИЕ ПОЛОЖЕНИЯ
+1.1. Настоящее Пользовательское соглашение (далее — "Соглашение" ) представляет собой публичную оферту, адресованную неопределённому кругу лиц, в соответствии со статьей 392 Гражданского кодекса Республики Беларусь (далее — "ГК РБ" ), заключаемую между Пользователем и Администрацией сервиса, являющейся государственным унитарным предприятием "Автобусный парк №1 г. Гомеля" (далее — "Компания" или "Администрация" ).
+
+1.2. В целях настоящего Соглашения:
+
+"Пользователь" — физическое или юридическое дееспособное лицо, которое, действуя от своего имени либо от имени представляемого лица, осуществляет доступ к функционалу Сервиса, включая, но не ограничиваясь, использованием приложения для ОС Windows, веб-сайта, API и прочих компонентов системы;
+"Сервисы" — совокупность предоставляемых Компанией услуг и продуктов, реализуемых посредством программного обеспечения, доступного через приложение для ОС Windows и/или веб-интерфейс;
+"Программа" — программное обеспечение, предназначенное для исполнения функций, связанных с информированием о расписании общественного транспорта, трекинге автобусов, системе уведомлений и иных функциональных модулей;
+"Данные" — любые данные, передаваемые, обрабатываемые, хранящиеся или используемые в рамках взаимодействия Пользователя с Сервисами;
+"Персональные данные" — информация, относящаяся к определённому или определяемому физическому лицу, подлежащая обработке в соответствии с Законом Республики Беларусь от 7 мая 2021 года № 85-З «О защите персональных данных»;
+"Платные услуги" — дополнительные функции, доступные на условиях возмездного оказания услуг, включая подписку, платные уведомления, эксклюзивный контент и прочие продукты, предлагаемые Компанией.
+1.3. Использование Сервисов, включая установку, запуск, просмотр, загрузку, регистрацию, авторизацию, использование функционала, равно как и иное взаимодействие с Программой, автоматически означает безоговорочное принятие условий данного Соглашения в качестве условия договора присоединения согласно ст. 406 ГК РБ.
+
+1.4. Настоящее Соглашение может быть изменено или дополнено Компанией в одностороннем порядке без предварительного уведомления Пользователя, если иное не предусмотрено действующим законодательством. Об актуальности версии Пользователь обязан удостовериться самостоятельно. Дата последнего изменения указывается в конце документа.
+
+1.5. В случае несогласия с условиями Соглашения, Пользователь обязан прекратить использование Сервисов.
+
+2. ТЕРМИНЫ И ОПРЕДЕЛЕНИЯ
+2.1. Для целей настоящего Соглашения используются следующие термины:
+
+"Авторизация" — процесс идентификации Пользователя с использованием логина, номера телефона, e-mail или иных реквизитов, установленных Администрацией.
+"Регистрация" — процедура создания учетной записи Пользователя, связанная с предоставлением достоверных персональных данных и прохождением верификации.
+"Учетная запись" — индивидуальный профиль Пользователя, созданный в рамках Сервиса и обеспечивающий доступ к его функциям.
+"Контент" — текстовые, графические, видео-, аудио-, программные и иные материалы, размещенные Пользователем или третьими лицами в рамках использования Сервисов.
+"Интеллектуальная собственность" — объекты исключительных прав, включая программы для ЭВМ, базы данных, товарные знаки, доменные имена, дизайнерские решения, произведения науки, литературы и искусства, права на которые принадлежат Компании или третьим лицам.
+"Нелицензионное использование" — использование Сервисов вне рамок предоставленной лицензии, включая модификацию, декомпиляцию, обратную разработку, распространение, воспроизведение, коммерческое применение и т.д.
+"Технические средства" — оборудование, устройства, операционные системы, браузеры и другие технологии, используемые Пользователем для взаимодействия с Сервисами.
+"Форс-мажор" — чрезвычайные и непреодолимые обстоятельства, препятствующие исполнению обязательств, включая природные катаклизмы, военные действия, эпидемии, сбои в работе сетей связи, энергоснабжения и другие аналогичные события.
+3. УСЛОВИЯ ИСПОЛЬЗОВАНИЯ
+3.1. Компания предоставляет Пользователю право использования Сервисов на условиях простой (неисключительной) лицензии, которая является отзывной, некоммерческой и непередаваемой, в соответствии с главой 70 ГК РБ. Лицензия предоставляется на весь срок действия Соглашения, если иное не установлено законом или самим Соглашением.
+
+3.2. Право использования Сервисов предоставляется исключительно в личных, некоммерческих целях. Любое использование Сервисов в коммерческих, предпринимательских, рекламных или иных целях допускается только при наличии отдельного письменного соглашения с Компанией.
+
+3.3. Пользователь обязуется использовать Сервисы добросовестно, в соответствии с их функциональным назначением, а также с соблюдением требований законодательства Республики Беларусь, включая, но не ограничиваясь:
+
+Законом РБ «Об информации, информатизации и защите информации»;
+Законом РБ «О защите персональных данных»;
+Законом РБ «О рекламе»;
+Законом РБ «Об обращении граждан и юридических лиц в государственные органы»;
+Кодексом Республики Беларусь об административных правонарушениях (КоАП РБ);
+Гражданским кодексом Республики Беларусь;
+Уголовным кодексом Республики Беларусь.
+3.4. Использование Сервисов возможно только после прохождения регистрации и/или авторизации. При регистрации Пользователь обязуется предоставить достоверную информацию о себе, включая имя, контактные данные, иные сведения, необходимые для идентификации.
+
+3.5. Создание множественных учетных записей, фиктивных профилей, а также использование чужих данных без разрешения владельца запрещено и может повлечь за собой ответственность, установленную законодательством.
+
+3.6. Пользователь, не достигший возраста четырнадцати лет, вправе использовать Сервисы только с письменного согласия родителей, усыновителей или попечителя, оформленного в соответствии с требованиями статьи 27 ГК РБ.
+
+4. ОБЯЗАТЕЛЬСТВА ПОЛЬЗОВАТЕЛЯ
+4.1. Пользователь обязуется:
+
+a) Не осуществлять модификацию, декомпиляцию, реверс-инжиниринг, воспроизведение, распространение, публичный показ, доведение до всеобщего сведения, импорт, экспорт, коммерческое использование и иное несанкционированное использование объектов интеллектуальной собственности, принадлежащих Компании или третьим лицам;
+
+b) Не использовать автоматизированные средства сбора данных (парсинг, скрапинг, боты и др.), несанкционированный доступ к серверам, злоупотребление API, DDOS-атаки и иные методы нарушения безопасности;
+
+c) Не размещать, не передавать, не публиковать Контент, который содержит:
+
+порнографию, детскую эротику;
+призывы к насильственному изменению конституционного строя, экстремистскую деятельность;
+клевету, оскорбления, дискриминационные высказывания;
+информацию, нарушающую права третьих лиц, включая авторские, смежные, товарные знаки и иные;
+информацию, способную причинить вред здоровью, моральному развитию, психике несовершеннолетних;
+заведомо ложную, дезинформирующую, недостоверную информацию.
+d) Не использовать Сервисы для рассылки спама, фишинга, мошенничества, кибербуллинга и иных противоправных действий.
+
+e) Не передавать свои учетные данные третьим лицам, не позволять другим лицам использовать свою учетную запись без письменного согласия Компании.
+
+f) Немедленно уведомить Администрацию о любом несанкционированном доступе к своей учетной записи.
+
+g) Соблюдать порядок обработки персональных данных, установленный Законом РБ «О защите персональных данных», в случае, если Пользователь выступает как оператор персональных данных.
+
+h) Не использовать Сервисы в целях, прямо или косвенно направленных на причинение ущерба интересам государства, общества, третьих лиц, Компании.
+
+i) Не блокировать, не модифицировать, не отключать рекламные материалы, если они являются частью Сервиса.
+
+j) Не осуществлять действия, направленные на получение преимущества, не предусмотренными условиями использования.
+
+k) Не использовать Сервисы в противоправных целях, в том числе с нарушением норм Конституции Республики Беларусь, уголовного, административного, гражданского законодательства.
+
+l) Не нарушать режим секретности, если таковая применяется к определённым частям Сервиса.
+
+m) Соблюдать правила цифровой этики, корректного поведения в интернете, уважать права и достоинство других Пользователей.
+
+n) Не совершать действий, направленных на снижение производительности, надёжности, доступности Сервисов.
+
+o) Не использовать Сервисы в обход технических ограничений, установленных Компанией.
+
+p) Не разглашать информацию, составляющую коммерческую, служебную, технологическую или иную тайну Компании, полученную в результате использования Сервисов.
+
+5. ОТВЕТСТВЕННОСТЬ СТОРОН
+5.1. В случае нарушения условий Соглашения Компания вправе:
+
+a) Приостановить, ограничить или полностью заблокировать доступ Пользователя к Сервисам, включая удаление учетной записи, без возврата средств (при наличии);
+
+b) Обратиться за защитой нарушенных прав в суд в порядке, предусмотренном законодательством;
+
+c) Требовать возмещения убытков, включая реальный ущерб, упущенную выгоду, судебные издержки, в соответствии со статьями 933–944 ГК РБ;
+
+d) Сообщить о факте нарушения в правоохранительные органы в случае наличия признаков административного или уголовного правонарушения.
+
+5.2. Ответственность Компании ограничивается положениями статьи 364 ГК РБ, согласно которой максимальная сумма возмещения убытков не может превышать десяти базовых величин , установленных на момент наступления ответственности.
+
+5.3. Компания не несет ответственности за:
+
+a) Точность, полноту, актуальность расписаний, задержки, отмены рейсов, вызванные форс-мажорными обстоятельствами, техническими сбоями, действиями третьих лиц, включая перевозчиков, провайдеров, государственные органы;
+
+b) Наличие ошибок, неточностей, пропусков в информации, представленной в Сервисах;
+
+c) Перебои в работе Сервисов, вызванные обстоятельствами непреодолимой силы, сбоями в телекоммуникационных сетях, энергоснабжении, действиями третьих лиц;
+
+d) Защиту от вирусов, вредоносных программ, несанкционированного доступа, если такие случаи не связаны с виной Компании;
+
+e) Содержание Контента, размещённого Пользователем или третьими лицами, за исключением случаев, когда Компания была официально уведомлена о нарушении и не приняла мер в течение разумного срока.
+
+5.4. Компания не гарантирует:
+
+a) Полного соответствия функционала заявленным характеристикам;
+
+b) Совместимости Сервисов со всеми устройствами, операционными системами, браузерами;
+
+c) Отсутствия ошибок, сбоев, зависаний в работе Программы.
+
+6. ПОРЯДОК РАЗРЕШЕНИЯ СПОРОВ
+6.1. Все споры, возникающие в связи с заключением, исполнением, изменением, расторжением Соглашения, разрешаются путём переговоров между сторонами.
+
+6.2. В случае недостижения взаимопонимания спор передаётся на рассмотрение в Арбитражный суд Гомельской области по месту нахождения Компании, если спор связан с предпринимательской деятельностью, или в Гомельский городской суд — если спор возник между физическим лицом и юридическим лицом.
+
+6.3. Применимое право — законодательство Республики Беларусь.
+
+7. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ
+7.1. Настоящее Соглашение вступает в силу с момента его принятия Пользователем и действует бессрочно, если не будет расторгнуто одной из сторон в одностороннем порядке.
+
+7.2. Компания вправе вносить изменения в Соглашение в одностороннем порядке. Изменения вступают в силу с момента их размещения в разделе «Правовая информация» приложения для ОС Windows или на официальном сайте, если иное не предусмотрено законодательством.
+
+7.3. Продолжение использования Сервисов после внесения изменений означает принятие новых условий.
+
+7.4. В случае если какие-либо положения Соглашения будут признаны недействительными или не имеющими юридической силы, остальные положения остаются в силе.
+
+7.5. Все уведомления, запросы, обращения, связанные с использованием Сервисов, направляются по адресу электронной почты, указанному в разделе "Контакты" приложения или на официальном сайте.
+
+8. РЕКВИЗИТЫ КОМПАНИИ
+Наименование: Государственное унитарное предприятие "Автобусный парк №1 г. Гомеля"
+УНП: 123456789
+Юридический адрес: г. Гомель, ул. Советская, д. 45
+E-mail: support@blitzbus.by
+Дата публикации: 24.06.2025
+Актуальная версия Соглашения: всегда доступна в разделе "Правовая информация" приложения для ОС Windows.
+
+ⓘ ВНИМАНИЕ! Использование Сервисов означает, что Вы ознакомились с условиями настоящего Соглашения, понимаете их содержание и принимаете безоговорочно. Если Вы не принимаете условия Соглашения, Вам необходимо прекратить использование Сервисов.</value>
+  </data>
+  <data name="richTextBox2.Text" xml:space="preserve">
+    <value>USER AGREEMENT (OFFER)
+for the application for Windows OS "Bus Fleet 'Blacklist' of Gomel City"
+
+1. GENERAL PROVISIONS
+1.1. This User Agreement (hereinafter referred to as the "Agreement" ) is a public offer addressed to an indefinite circle of persons, in accordance with Article 392 of the Civil Code of the Republic of Belarus (hereinafter — "CC RB" ), concluded between the User and the Service Administration, which is a state-owned unitary enterprise "Gomel Bus Park No. 1" (hereinafter — "Company" or "Administration" ).
+
+1.2. For the purposes of this Agreement:
+
+"User" — a capable physical or legal entity who, acting on their own behalf or on behalf of a represented party, accesses the functionality of the Service, including but not limited to using the application for Windows OS, website, API, and other system components;
+"Services" — a set of services and products provided by the Company through software accessible via the application for Windows OS and/or web interface;
+"Program" — software intended to perform functions related to informing about public transport schedules, tracking buses, notification systems, and other functional modules;
+"Data" — any data transmitted, processed, stored, or used within the User's interaction with the Services;
+"Personal Data" — information relating to a specific or identifiable individual, subject to processing in accordance with the Law of the Republic of Belarus dated May 7, 2021 No. 85-Z “On Personal Data Protection”;
+"Paid Services" — additional features available on a paid basis, including subscriptions, paid notifications, exclusive content, and other products offered by the Company.
+1.3. Use of the Services, including installation, launch, viewing, downloading, registration, authorization, use of functionality, or any other interaction with the Program, automatically constitutes unconditional acceptance of the terms of this Agreement as a condition of an adhesion contract pursuant to Article 406 CC RB.
+
+1.4. The Company may amend or supplement this Agreement unilaterally without prior notice to the User unless otherwise provided by applicable legislation. The User must independently verify the current version. The date of the last change is indicated at the end of the document.
+
+1.5. If the User disagrees with the terms of the Agreement, they must cease using the Services.
+
+2. TERMS AND DEFINITIONS
+2.1. For the purposes of this Agreement, the following terms are used:
+
+"Authorization" — the process of identifying the User using login, phone number, email, or other credentials established by the Administration.
+"Registration" — the procedure for creating a User account associated with providing accurate personal data and verification.
+"Account" — the individual profile of the User created within the Service and providing access to its functions.
+"Content" — textual, graphic, video, audio, software, and other materials posted by the User or third parties within the use of the Services.
+"Intellectual Property" — objects of exclusive rights, including computer programs, databases, trademarks, domain names, design solutions, works of science, literature, and art, the rights to which belong to the Company or third parties.
+"Unlicensed Use" — use of the Services outside the scope of the granted license, including modification, decompilation, reverse engineering, distribution, reproduction, commercial use, etc.
+"Technical Means" — equipment, devices, operating systems, browsers, and other technologies used by the User to interact with the Services.
+"Force Majeure" — extraordinary and unavoidable circumstances preventing performance of obligations, including natural disasters, military actions, epidemics, communication network failures, power supply disruptions, and similar events.
+3. TERMS OF USE
+3.1. The Company grants the User the right to use the Services under a simple (non-exclusive), revocable, non-commercial, and non-transferable license, in accordance with Chapter 70 CC RB. The license is granted for the entire term of this Agreement unless otherwise provided by law or the Agreement itself.
+
+3.2. The right to use the Services is granted exclusively for personal, non-commercial purposes. Any use of the Services for commercial, entrepreneurial, advertising, or other purposes is permitted only upon execution of a separate written agreement with the Company.
+
+3.3. The User undertakes to use the Services in good faith, in accordance with their functional purpose, and in compliance with the legislation of the Republic of Belarus, including but not limited to:
+
+the Law of the Republic of Belarus “On Information, Informatization, and Information Protection”;
+the Law of the Republic of Belarus “On Personal Data Protection”;
+the Law of the Republic of Belarus “On Advertising”;
+the Law of the Republic of Belarus “On Citizens’ and Legal Entities’ Appeals to State Authorities”;
+the Code of the Republic of Belarus on Administrative Offenses (CAO RB);
+the Civil Code of the Republic of Belarus;
+the Criminal Code of the Republic of Belarus.
+3.4. Use of the Services is possible only after registration and/or authorization. During registration, the User undertakes to provide accurate information about themselves, including name, contact details, and other necessary identification data.
+
+3.5. Creation of multiple accounts, fake profiles, or use of another person’s data without permission is prohibited and may result in liability under the legislation.
+
+3.6. A User under the age of fourteen may use the Services only with the written consent of parents, adopters, or guardians, in accordance with Article 27 CC RB.
+
+4. USER OBLIGATIONS
+4.1. The User undertakes to:
+a) Not carry out modification, decompilation, reverse engineering, reproduction, distribution, public display, import, export, commercial use, or any unauthorized use of intellectual property owned by the Company or third parties;
+b) Not use automated data collection tools (scraping, bots, etc.), unauthorized server access, abuse of APIs, DDoS attacks, or any other methods violating security;
+c) Not post, transmit, or publish Content that contains:
+
+pornography, child erotica;
+calls for violent constitutional changes, extremist activities;
+defamation, insults, discriminatory statements;
+information infringing on the rights of third parties, including copyright, related rights, trademarks, and others;
+information that may harm the health, moral development, or psyche of minors;
+knowingly false, misleading, or inaccurate information.
+d) Not use the Services for spamming, phishing, fraud, cyberbullying, or other unlawful activities;
+e) Not disclose account credentials to third parties or allow others to use the account without the Company's written consent;
+f) Immediately notify the Administration of any unauthorized access to their account;
+g) Comply with the rules of personal data processing established by the Law of the Republic of Belarus “On Personal Data Protection”, if the User acts as a personal data operator;
+h) Not use the Services for purposes directly or indirectly causing damage to the interests of the state, society, third parties, or the Company;
+i) Not block, modify, or disable advertisements included in the Services;
+j) Not engage in actions aimed at gaining benefits not provided for in the usage conditions;
+k) Not use the Services for unlawful purposes, including violations of the Constitution of the Republic of Belarus, criminal, administrative, or civil legislation;
+l) Not violate confidentiality regimes applied to certain parts of the Services;
+m) Follow digital ethics and respectful online behavior, respecting the rights and dignity of other Users;
+n) Not perform actions affecting the performance, reliability, or availability of the Services;
+o) Not use the Services bypassing technical restrictions imposed by the Company;
+p) Not disclose information constituting commercial, service, technological, or other secrets of the Company obtained during the use of the Services.
+5. LIABILITY
+5.1. In case of breach of the Agreement terms, the Company has the right to:
+a) Suspend, limit, or completely block the User’s access to the Services, including deletion of the account, without refund (if applicable);
+b) Seek protection of violated rights in court in accordance with the law;
+c) Claim compensation for damages, including actual damage, lost profits, court expenses, in accordance with Articles 933–944 CC RB;
+d) Report the violation to law enforcement authorities if it involves signs of administrative or criminal offenses.
+
+5.2. The Company’s liability is limited by Article 364 CC RB, according to which the maximum amount of damage compensation cannot exceed ten base units , as defined at the time of liability occurrence.
+
+5.3. The Company shall not be liable for:
+a) Accuracy, completeness, or timeliness of schedules, delays, or cancellations caused by force majeure, technical failures, or third-party actions, including carriers, providers, or government agencies;
+b) Presence of errors, inaccuracies, or omissions in the information presented in the Services;
+c) Interruptions in the operation of the Services caused by force majeure, communication network failures, power supply issues, or third-party actions;
+d) Protection against viruses, malicious software, or unauthorized access unless due to the fault of the Company;
+e) Content posted by the User or third parties, except when the Company has been officially notified of the violation and failed to take measures within a reasonable time frame.
+
+5.4. The Company does not guarantee:
+a) Full correspondence of the functionality to the declared characteristics;
+b) Compatibility of the Services with all devices, operating systems, or browsers;
+c) Absence of errors, malfunctions, or freezes in the Program.
+
+6. DISPUTE RESOLUTION
+6.1. All disputes arising from the conclusion, execution, amendment, or termination of the Agreement shall be resolved through negotiations between the parties.
+
+6.2. If no agreement is reached, the dispute shall be submitted to the Arbitration Court of Gomel Region if it relates to entrepreneurial activity, or to the Gomel City Court if the dispute arises between a physical and a legal person.
+
+6.3. Governing law — the legislation of the Republic of Belarus.
+
+7. FINAL PROVISIONS
+7.1. This Agreement comes into effect from the moment of its acceptance by the User and remains valid indefinitely unless terminated unilaterally by one of the parties.
+
+7.2. The Company reserves the right to make changes to the Agreement unilaterally. Changes come into effect from the moment of publication in the “Legal Information” section of the application for Windows OS or on the official website unless otherwise provided by law.
+
+7.3. Continued use of the Services after changes means acceptance of the new terms.
+
+7.4. If any provision of the Agreement is recognized as invalid or legally ineffective, the remaining provisions remain in force.
+
+7.5. All notices, requests, and inquiries related to the use of the Services should be sent to the email address specified in the “Contacts” section of the application or on the official website.
+
+8. COMPANY DETAILS
+Name: State Unitary Enterprise "Gomel Bus Park No. 1"
+UNP: 123456789
+Legal Address: Gomel, Sovetskaya St., 45
+E-mail: support@blitzbus.by
+Publication Date: June 24, 2025
+Current Version: always available in the “Legal Information” section of the application for Windows OS.
+
+⚠️ IMPORTANT! Use of the Services means that you have read, understood, and unconditionally accepted the terms of this Agreement. If you do not accept the terms, you must stop using the Services.</value>
+  </data>
+</root>
