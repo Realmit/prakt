@@ -1,7 +1,5 @@
 ﻿#include "Reg.h"
-#include <mmsystem.h>
 #include <windows.h>
-#pragma comment(lib, "winmm.lib")
 #pragma once
 namespace prakt {
 
@@ -20,7 +18,7 @@ namespace prakt {
 	public ref class Authview : public System::Windows::Forms::Form
 	{
 	public:
-		Form^ obj; int a1 = 0;
+		Form^ obj;
 	private: System::Windows::Forms::Button^ buttonload;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ buttonsearch;
@@ -120,10 +118,10 @@ namespace prakt {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::TextBox^ textBoxsost;
 	private: System::Windows::Forms::TextBox^ textBoxlost;
-private: System::Windows::Forms::Timer^ timer1;
-private: System::Windows::Forms::Button^ buttonepilepsy;
-private: System::Windows::Forms::Button^ button1;
-private: System::Windows::Forms::Button^ button2;
+
+
+
+
 
 	public:
 		int currentVolume = 500;
@@ -173,7 +171,6 @@ private: System::ComponentModel::IContainer^ components;
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Authview::typeid));
 			this->buttonbacktomain = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
@@ -220,10 +217,6 @@ private: System::ComponentModel::IContainer^ components;
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->textBoxsost = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxlost = (gcnew System::Windows::Forms::TextBox());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->buttonepilepsy = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -873,51 +866,6 @@ private: System::ComponentModel::IContainer^ components;
 			this->textBoxlost->Visible = false;
 			this->textBoxlost->TextChanged += gcnew System::EventHandler(this, &Authview::textBoxlost_TextChanged);
 			// 
-			// timer1
-			// 
-			this->timer1->Enabled = true;
-			this->timer1->Interval = 50;
-			this->timer1->Tick += gcnew System::EventHandler(this, &Authview::timer1_Tick);
-			// 
-			// buttonepilepsy
-			// 
-			this->buttonepilepsy->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(254)));
-			this->buttonepilepsy->Location = System::Drawing::Point(518, 379);
-			this->buttonepilepsy->Margin = System::Windows::Forms::Padding(2);
-			this->buttonepilepsy->Name = L"buttonepilepsy";
-			this->buttonepilepsy->Size = System::Drawing::Size(89, 58);
-			this->buttonepilepsy->TabIndex = 83;
-			this->buttonepilepsy->Text = L"🌈";
-			this->buttonepilepsy->UseVisualStyleBackColor = true;
-			this->buttonepilepsy->Click += gcnew System::EventHandler(this, &Authview::buttonepilepsy_Click);
-			// 
-			// button1
-			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(254)));
-			this->button1->Location = System::Drawing::Point(432, 380);
-			this->button1->Margin = System::Windows::Forms::Padding(2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(82, 58);
-			this->button1->TabIndex = 84;
-			this->button1->Text = L">";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &Authview::button1_Click);
-			// 
-			// button2
-			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(254)));
-			this->button2->Location = System::Drawing::Point(346, 380);
-			this->button2->Margin = System::Windows::Forms::Padding(2);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(82, 58);
-			this->button2->TabIndex = 85;
-			this->button2->Text = L"<";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &Authview::button2_Click);
-			// 
 			// Authview
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -925,9 +873,6 @@ private: System::ComponentModel::IContainer^ components;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(1824, 449);
 			this->ControlBox = false;
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->buttonepilepsy);
 			this->Controls->Add(this->textBoxlost);
 			this->Controls->Add(this->textBoxsost);
 			this->Controls->Add(this->pictureBox1);
@@ -1015,18 +960,12 @@ private: System::ComponentModel::IContainer^ components;
 	private: System::Void Authview_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ClientSize = System::Drawing::Size(1400, 450);
 		if (adminmodelocal == 1) {
-			button1->Visible = true;
-			button2->Visible = true;
 			buttonadminreg->Visible = true;
 			buttonload->Visible = true;
-			buttonepilepsy->Visible = true;
 		}
 		else {
-			button1->Visible = false;
-			button2->Visible = false;
 			buttonadminreg->Visible = false;
 			buttonload->Visible = false;
-			buttonepilepsy->Visible = false;
 		}
 		LoadDataFromFile("auto.txt");
 		for each (DataGridViewColumn ^ column in dataGridView1->Columns)
@@ -1154,58 +1093,6 @@ private: System::Void checkBoxlost_CheckedChanged(System::Object^ sender, System
 private: System::Void Authview_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 	if (e->CloseReason == CloseReason::UserClosing) {
 		Application::Exit();
-	}
-}
-private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-	if (a1)
-	{
-		if (this->BackColor == System::Drawing::SystemColors::ControlDark)
-			this->BackColor = System::Drawing::Color::Gold;
-		else if (this->BackColor == System::Drawing::Color::Gold)
-			this->BackColor = System::Drawing::Color::Red;
-		else if (this->BackColor == System::Drawing::Color::Red)
-			this->BackColor = System::Drawing::Color::LimeGreen;
-		else if (this->BackColor == System::Drawing::Color::LimeGreen)
-			this->BackColor = System::Drawing::SystemColors::ControlDark;
-	}
-}
-private: System::Void buttonepilepsy_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (!a1)
-	{
-		a1 = 1;
-		std::wstring musicPath = L"7067831663128349441.mp3";
-		std::wstring openCmd = L"open \"" + musicPath + L"\" type mpegvideo alias mp3file";
-		mciSendString(openCmd.c_str(), nullptr, 0, nullptr);
-		mciSendString(L"play mp3file repeat", nullptr, 0, nullptr);
-	}
-	else
-	{
-		a1 = 0;
-		mciSendString(L"stop mp3file", nullptr, 0, nullptr);
-		mciSendString(L"close mp3file", nullptr, 0, nullptr);
-		this->BackColor = System::Drawing::SystemColors::ControlDark;
-	}
-	
-}
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (currentVolume != 0)
-	{
-		currentVolume -= 50;
-		// Send command to MCI
-		wchar_t cmd[128];
-		swprintf(cmd, 128, L"setaudio mp3file volume to %d", currentVolume);
-		mciSendString(cmd, nullptr, 0, nullptr);
-	}
-}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-	if (currentVolume != 1000)
-	{
-		currentVolume += 50;
-		// Send command to MCI
-		wchar_t cmd[128];
-		swprintf(cmd, 128, L"setaudio mp3file volume to %d", currentVolume);
-		mciSendString(cmd, nullptr, 0, nullptr);
 	}
 }
 };
