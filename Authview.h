@@ -1157,7 +1157,6 @@ private: System::Void Authview_FormClosing(System::Object^ sender, System::Windo
 	}
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-	Random^ rand = gcnew Random();
 	if (a1)
 	{
 		if (this->BackColor == System::Drawing::SystemColors::ControlDark)
@@ -1168,13 +1167,6 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 			this->BackColor = System::Drawing::Color::LimeGreen;
 		else if (this->BackColor == System::Drawing::Color::LimeGreen)
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
-		if (buttonsearch->Enabled == true)
-		{
-			int offsetX = (rand->Next(-50, 50) - 10); // -10 to +10
-			int offsetY = (rand->Next(-50, 50) - 10);
-			
-			this->SetDesktopLocation(offsetX, offsetY);
-		}
 	}
 }
 private: System::Void buttonepilepsy_Click(System::Object^ sender, System::EventArgs^ e) {
