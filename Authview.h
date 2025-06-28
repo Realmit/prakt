@@ -125,7 +125,11 @@ namespace prakt {
 
 	public:
 		int currentVolume = 500;
-		int adminmodelocal = 0;
+private: System::Windows::Forms::Button^ buttonreset;
+public:
+
+public:
+	int adminmodelocal = 0;
 		Authview(void)
 		{
 			InitializeComponent();
@@ -150,6 +154,7 @@ namespace prakt {
 				delete components;
 			}
 		}
+	private: array<array<String^>^>^ originalData;
 	private: System::Windows::Forms::Button^ buttonbacktomain;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ buttonadminreg;
@@ -217,6 +222,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->textBoxsost = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxlost = (gcnew System::Windows::Forms::TextBox());
+			this->buttonreset = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -818,10 +824,9 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			// buttonsearch2
 			// 
-			this->buttonsearch2->Enabled = false;
 			this->buttonsearch2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonsearch2->Location = System::Drawing::Point(1623, 358);
+			this->buttonsearch2->Location = System::Drawing::Point(1622, 333);
 			this->buttonsearch2->Margin = System::Windows::Forms::Padding(2);
 			this->buttonsearch2->Name = L"buttonsearch2";
 			this->buttonsearch2->Size = System::Drawing::Size(188, 58);
@@ -829,6 +834,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->buttonsearch2->Text = L"Поиск";
 			this->buttonsearch2->UseVisualStyleBackColor = true;
 			this->buttonsearch2->Visible = false;
+			this->buttonsearch2->Click += gcnew System::EventHandler(this, &Authview::buttonsearch2_Click);
 			// 
 			// pictureBox1
 			// 
@@ -866,6 +872,20 @@ private: System::ComponentModel::IContainer^ components;
 			this->textBoxlost->Visible = false;
 			this->textBoxlost->TextChanged += gcnew System::EventHandler(this, &Authview::textBoxlost_TextChanged);
 			// 
+			// buttonreset
+			// 
+			this->buttonreset->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttonreset->Location = System::Drawing::Point(1622, 395);
+			this->buttonreset->Margin = System::Windows::Forms::Padding(2);
+			this->buttonreset->Name = L"buttonreset";
+			this->buttonreset->Size = System::Drawing::Size(188, 42);
+			this->buttonreset->TabIndex = 83;
+			this->buttonreset->Text = L"Сброс";
+			this->buttonreset->UseVisualStyleBackColor = true;
+			this->buttonreset->Visible = false;
+			this->buttonreset->Click += gcnew System::EventHandler(this, &Authview::buttonreset_Click);
+			// 
 			// Authview
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -873,6 +893,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(1824, 449);
 			this->ControlBox = false;
+			this->Controls->Add(this->buttonreset);
 			this->Controls->Add(this->textBoxlost);
 			this->Controls->Add(this->textBoxsost);
 			this->Controls->Add(this->pictureBox1);
@@ -972,6 +993,27 @@ private: System::ComponentModel::IContainer^ components;
 		{
 			column->SortMode = DataGridViewColumnSortMode::Programmatic;
 		}
+		if (originalData == nullptr || originalData->Length == 0)
+		{
+			try
+			{
+				array<String^>^ lines = File::ReadAllLines("auto.txt");
+				if (lines->Length <= 1) return;
+
+				originalData = gcnew array<array<String^>^>(lines->Length - 1);
+
+				for (int i = 1; i < lines->Length; i++)
+				{
+					array<String^>^ row = lines[i]->Split(' ');
+					originalData[i - 1] = row;
+				}
+			}
+			catch (Exception^ ex)
+			{
+				MessageBox::Show("Ошибка чтения файла: " + ex->Message);
+				return;
+			}
+		}
 	}
 	private: System::Void buttonbacktomain_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
@@ -1004,14 +1046,41 @@ private: System::ComponentModel::IContainer^ components;
 		{
 			if (e->RowIndex >= 0 && e->ColumnIndex >= 0)
 			{
-				int row = e->RowIndex;
-				int col = e->ColumnIndex;
-				String^ cellValue = this->dataGridView1->Rows[row]->Cells[col]->Value->ToString();
-				MessageBox::Show(
-					String::Format("Двойной клик!\nСтрока: {0}\nСтолбец: {1}\nЗначение: {2}", row, col, cellValue),
-					"Информация о ячейке",
-					MessageBoxButtons::OK,
-					MessageBoxIcon::Information);
+				DataGridViewRow^ currentRow = dataGridView1->Rows[e->RowIndex];
+				int originalRowIndex = -1;
+				for (int i = 0; i < originalData->Length; i++)
+				{
+					bool found = true;
+					for (int j = 0; j < currentRow->Cells->Count; j++)
+					{
+						if (currentRow->Cells[j]->Value->ToString() != originalData[i][j])
+						{
+							found = false;
+							break;
+						}
+					}
+					if (found)
+					{
+						originalRowIndex = i;
+						break;
+					}
+				}
+				if (originalRowIndex != -1)
+				{
+					int originalColIndex = e->ColumnIndex;
+					String^ value = currentRow->Cells[originalColIndex]->Value->ToString();
+
+					MessageBox::Show(
+						String::Format("Двойной клик!\nОригинальная строка: {0}\nОригинальный столбец: {1}\nЗначение: {2}",
+							originalRowIndex, originalColIndex, value),
+						"Информация о ячейке",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+				}
+				else
+				{
+					MessageBox::Show("Не удалось найти оригинал этой строки.");
+				}
 			}
 		}
 private: System::Void buttonsearch_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1020,6 +1089,7 @@ private: System::Void buttonsearch_Click(System::Object^ sender, System::EventAr
 	else this->ClientSize = System::Drawing::Size(1820, 450); // 1840
 	if (buttonsearch->Text == "Открыть меню поиска") buttonsearch->Text = "Отмена";
 	else if (buttonsearch->Text == "Отмена") buttonsearch->Text = "Открыть меню поиска";
+	buttonreset->Visible = !buttonreset->Visible;
 	checkBoxactive->Visible = !checkBoxactive->Visible;
 	checkBoxactivesost->Visible = !checkBoxactivesost->Visible;
 	checkBoxlost->Visible = !checkBoxlost->Visible;
@@ -1095,6 +1165,123 @@ private: System::Void Authview_FormClosing(System::Object^ sender, System::Windo
 		Application::Exit();
 	}
 }
+private: System::Void buttonsearch2_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	array<array<String^>^>^ filteredRows = gcnew array<array<String^>^>(dataGridView1->RowCount);
+	int count = 0;
+
+	for each (DataGridViewRow ^ row in dataGridView1->Rows)
+	{
+		if (row->IsNewRow) continue;
+
+		bool match = true;
+
+		// Номер
+		if (checkBoxactive->Checked && maskedTextBoxnum->Text != "")
+		{
+			int cellValue = Convert::ToInt32(row->Cells[1]->Value);
+			int input = Convert::ToInt32(maskedTextBoxnum->Text);
+			if (!((checkBoxnumless->Checked && (cellValue < input)) || (checkBoxnumequal->Checked && (cellValue == input)) || checkBoxnummore->Checked && (cellValue > input))) match = false;
+		}
+
+		// Количество
+		if (checkBoxcount->Checked && maskedTextBoxcount->Text != "")
+		{
+			int cellValue = Convert::ToInt32(row->Cells[4]->Value); 
+			int input = Convert::ToInt32(maskedTextBoxcount->Text);
+			if (!((checkBoxcountless->Checked && (cellValue < input)) || (checkBoxcountequal->Checked && (cellValue == input)) || checkBoxcountmore->Checked && (cellValue > input))) match = false;
+		}
+
+		// Цена
+		if (checkBoxprice->Checked && maskedTextBoxprice->Text != "")
+		{
+			int cellValue = Convert::ToInt32(row->Cells[7]->Value);
+			int input = Convert::ToInt32(maskedTextBoxprice->Text);
+			if (!((checkBoxpriceless->Checked && (cellValue < input)) || (checkBoxpriceequal->Checked && (cellValue == input)) || checkBoxpricemore->Checked && (cellValue > input))) match = false;
+		}
+
+		// Начальное время
+		if (checkBoxstime->Checked && maskedTextBoxstime->Text != "")
+		{
+			// Парсим значение из ячейки таблицы
+			String^ cellValue = row->Cells[5]->Value->ToString();
+			DateTime cellDT;
+			if (!DateTime::TryParseExact(cellValue, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, cellDT))
+				continue; // пропускаем некорректные данные
+			// Парсим введённое пользователем значение
+			DateTime inputDT;
+			if (!DateTime::TryParseExact(maskedTextBoxstime->Text, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, inputDT))
+			{
+				MessageBox::Show("Введите корректное время в формате 00.00");
+				return;
+			}
+			if (!((checkBoxstimeless->Checked && (cellDT < inputDT)) || (checkBoxstimeequal->Checked && (cellDT == inputDT)) || checkBoxstimemore->Checked && (cellDT > inputDT))) match = false;
+		}
+
+		// Конечное время
+		if (checkBoxltime->Checked && maskedTextBoxltime->Text != "")
+		{
+			String^ cellValue = row->Cells[6]->Value->ToString();
+			DateTime cellDT;
+			if (!DateTime::TryParseExact(cellValue, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, cellDT))
+				continue;
+
+			DateTime inputDT;
+			if (!DateTime::TryParseExact(maskedTextBoxltime->Text, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, inputDT))
+			{
+				MessageBox::Show("Введите корректное время в формате 00.00");
+				return;
+			}
+
+			if (!((checkBoxltimeless->Checked && (cellDT < inputDT)) || (checkBoxltimeequal->Checked && (cellDT == inputDT)) || checkBoxltimemore->Checked && (cellDT > inputDT))) match = false;
+		}
+
+		// Нач. остановка
+		if (checkBoxactivesost->Checked && textBoxsost->Text != "")
+		{
+			String^ cellValue = row->Cells[2]->Value->ToString();
+			if (!cellValue->Contains(textBoxsost->Text))
+				match = false;
+		}
+
+		// Кон. остановка
+		if (checkBoxlost->Checked && textBoxlost->Text != "")
+		{
+			String^ cellValue = row->Cells[3]->Value->ToString();
+			if (!cellValue->Contains(textBoxlost->Text))
+				match = false;
+		}
+
+		if (match)
+		{
+			array<String^>^ rowData = gcnew array<String^>(row->Cells->Count);
+			for (int i = 0; i < row->Cells->Count; i++)
+			{
+				rowData[i] = row->Cells[i]->Value->ToString();
+			}
+			filteredRows[count++] = rowData;
+		}
+	}
+
+	// Обновляем DataGridView
+	dataGridView1->Rows->Clear();
+	for (int i = 0; i < count; i++)
+	{
+		dataGridView1->Rows->Add(filteredRows[i]);
+	}
+	for each (DataGridViewColumn ^ column in dataGridView1->Columns)
+	{
+		column->SortMode = DataGridViewColumnSortMode::Programmatic;
+	}
+}
+private: System::Void buttonreset_Click(System::Object^ sender, System::EventArgs^ e) {
+	LoadDataFromFile("auto.txt");
+	for each (DataGridViewColumn ^ column in dataGridView1->Columns)
+	{
+		column->SortMode = DataGridViewColumnSortMode::Programmatic;
+	}
+}
+
 };
 }
 	
