@@ -919,7 +919,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonedit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonedit->Location = System::Drawing::Point(962, 367);
+			this->buttonedit->Location = System::Drawing::Point(1171, 367);
 			this->buttonedit->Margin = System::Windows::Forms::Padding(2);
 			this->buttonedit->Name = L"buttonedit";
 			this->buttonedit->Size = System::Drawing::Size(203, 58);
@@ -933,7 +933,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttoneditundo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttoneditundo->Location = System::Drawing::Point(1169, 367);
+			this->buttoneditundo->Location = System::Drawing::Point(961, 367);
 			this->buttoneditundo->Margin = System::Windows::Forms::Padding(2);
 			this->buttoneditundo->Name = L"buttoneditundo";
 			this->buttoneditundo->Size = System::Drawing::Size(206, 58);
@@ -1134,7 +1134,12 @@ private: System::ComponentModel::IContainer^ components;
 		}
 		catch (Exception^ ex)
 		{
-			MessageBox::Show("Ошибка при чтении файла: " + ex->Message);
+			if (filePath == "auto.txt")
+			{
+				MessageBox::Show("Ошибка при чтении файла 'auto.txt'.\nОткройте нужный файл самостоятельно!\nКод ошибки: " + ex->Message);
+				buttonload_Click(nullptr, nullptr);
+			}
+			else MessageBox::Show("Ошибка при чтении файла: " + ex->Message);
 		}
 	}
 	private: System::Void Authview_Load(System::Object^ sender, System::EventArgs^ e) {

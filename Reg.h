@@ -26,6 +26,8 @@ namespace prakt {
 	public:
 		bool blinkact1 = false;
 		bool blinkact2 = false;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	public:
 		Form^ obj;
 		Reg(void)
 		{
@@ -95,6 +97,8 @@ namespace prakt {
 			this->buttonremove = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// buttonbacktomain
@@ -197,7 +201,7 @@ namespace prakt {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
 			this->label5->ForeColor = System::Drawing::Color::Gold;
-			this->label5->Location = System::Drawing::Point(332, 9);
+			this->label5->Location = System::Drawing::Point(332, 11);
 			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(140, 97);
@@ -216,7 +220,7 @@ namespace prakt {
 			this->buttonremove->Name = L"buttonremove";
 			this->buttonremove->Size = System::Drawing::Size(159, 58);
 			this->buttonremove->TabIndex = 17;
-			this->buttonremove->Text = L"Удалить";
+			this->buttonremove->Text = L"5";
 			this->buttonremove->UseVisualStyleBackColor = true;
 			this->buttonremove->Click += gcnew System::EventHandler(this, &Reg::buttonremove_Click);
 			// 
@@ -241,6 +245,15 @@ namespace prakt {
 			this->timer1->Interval = 300;
 			this->timer1->Tick += gcnew System::EventHandler(this, &Reg::timer1_Tick);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->pictureBox1->Location = System::Drawing::Point(326, 9);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(158, 105);
+			this->pictureBox1->TabIndex = 81;
+			this->pictureBox1->TabStop = false;
+			// 
 			// Reg
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -248,9 +261,10 @@ namespace prakt {
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(495, 212);
 			this->ControlBox = false;
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->buttonremove);
 			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->buttonremove);
 			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -264,6 +278,7 @@ namespace prakt {
 			this->Text = L"Панель администратора";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Reg::Reg_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Reg::Reg_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

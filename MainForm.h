@@ -186,7 +186,7 @@ namespace prakt {
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(64, 17);
 			this->label4->TabIndex = 9;
-			this->label4->Text = L"ver 0.1.0";
+			this->label4->Text = L"ver 0.5.2";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// buttoninfohowto

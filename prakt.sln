@@ -17,10 +17,10 @@ Global
 		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Debug|x64.Build.0 = Debug|x64
 		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Debug|x86.ActiveCfg = Debug|Win32
 		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Debug|x86.Build.0 = Debug|Win32
-		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x64.ActiveCfg = Release|x64
-		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x64.Build.0 = Release|x64
-		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x86.ActiveCfg = Release|Win32
-		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x86.Build.0 = Release|Win32
+		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x64.ActiveCfg = Debug|x64
+		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x64.Build.0 = Debug|x64
+		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x86.ActiveCfg = Release|x64
+		{15A7DEB2-CAD0-416E-881F-856A056890C6}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
