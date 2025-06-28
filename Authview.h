@@ -18,10 +18,7 @@ namespace prakt {
 	/// </summary>
 	public ref class Authview : public System::Windows::Forms::Form
 	{
-	public:
-	Form^ obj; 
-	int origrow = -1;
-	int origcol = -1;
+	public: 
 	private: System::Windows::Forms::Button^ buttonload;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ buttonsearch;
@@ -138,11 +135,15 @@ private: System::Windows::Forms::TextBox^ textBoxeditold;
 private: System::Windows::Forms::Label^ label11;
 private: System::Windows::Forms::Label^ label12;
 private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxedittime;
+private: System::Windows::Forms::Button^ buttonloadtable;
+
 
 public:
 
 public:
-	int adminmodelocal = 0;
+	Form^ obj;
+	String^ cellValue1;
+	int adminmodelocal = 0, origrow = 0, origcol = 0;
 		Authview(void)
 		{
 			InitializeComponent();
@@ -245,6 +246,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->maskedTextBoxedittime = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->buttonloadtable = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -912,7 +914,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonedit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonedit->Location = System::Drawing::Point(999, 367);
+			this->buttonedit->Location = System::Drawing::Point(959, 367);
 			this->buttonedit->Margin = System::Windows::Forms::Padding(2);
 			this->buttonedit->Name = L"buttonedit";
 			this->buttonedit->Size = System::Drawing::Size(169, 58);
@@ -926,10 +928,10 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttoneditundo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttoneditundo->Location = System::Drawing::Point(1172, 367);
+			this->buttoneditundo->Location = System::Drawing::Point(1237, 367);
 			this->buttoneditundo->Margin = System::Windows::Forms::Padding(2);
 			this->buttoneditundo->Name = L"buttoneditundo";
-			this->buttoneditundo->Size = System::Drawing::Size(169, 58);
+			this->buttoneditundo->Size = System::Drawing::Size(135, 58);
 			this->buttoneditundo->TabIndex = 85;
 			this->buttoneditundo->Text = L"Отмена";
 			this->buttoneditundo->UseVisualStyleBackColor = true;
@@ -1029,6 +1031,20 @@ private: System::ComponentModel::IContainer^ components;
 			this->maskedTextBoxedittime->Visible = false;
 			this->maskedTextBoxedittime->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxedittime_TextChanged);
 			// 
+			// buttonloadtable
+			// 
+			this->buttonloadtable->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttonloadtable->Location = System::Drawing::Point(1132, 367);
+			this->buttonloadtable->Margin = System::Windows::Forms::Padding(2);
+			this->buttonloadtable->Name = L"buttonloadtable";
+			this->buttonloadtable->Size = System::Drawing::Size(101, 58);
+			this->buttonloadtable->TabIndex = 93;
+			this->buttonloadtable->Text = L"Обновить таблицу";
+			this->buttonloadtable->UseVisualStyleBackColor = true;
+			this->buttonloadtable->Visible = false;
+			this->buttonloadtable->Click += gcnew System::EventHandler(this, &Authview::buttonloadtable_Click);
+			// 
 			// Authview
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1036,6 +1052,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(1824, 449);
 			this->ControlBox = false;
+			this->Controls->Add(this->buttonloadtable);
 			this->Controls->Add(this->maskedTextBoxedittime);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label11);
@@ -1109,6 +1126,7 @@ private: System::ComponentModel::IContainer^ components;
 		try
 		{
 			array<String^>^ lines = File::ReadAllLines(filePath);
+
 			if (lines->Length == 0)
 				return;
 			dataGridView1->Columns->Clear();
@@ -1118,13 +1136,11 @@ private: System::ComponentModel::IContainer^ components;
 			{
 				dataGridView1->Columns->Add(header, header);
 			}
-			int i = 1;
-			for (i = 1; i < lines->Length; i++)
+			for (int i = 1; i < lines->Length; i++)
 			{
 				array<String^>^ row = lines[i]->Split('|');
 				dataGridView1->Rows->Add(row);
 			}
-			origrow = i; origcol = e.Col
 		}
 		catch (Exception^ ex)
 		{
@@ -1390,82 +1406,67 @@ private: System::Void buttonreset_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 	{
-
-		if (e->RowIndex >= 0 && e->ColumnIndex >= 0)
+		if (e->RowIndex >= 0 && e->ColumnIndex > 0)
 		{
-			DataGridViewRow^ currentRow = dataGridView1->Rows[e->RowIndex];
+			int gridRow = e->RowIndex;
+			int gridCol = e->ColumnIndex;
+			String^ uniqueKey = this->dataGridView1->Rows[gridRow]->Cells[0]->Value->ToString();
 			int originalRowIndex = -1;
 			for (int i = 0; i < originalData->Length; i++)
 			{
-				bool match = true;
-				for (int j = 0; j < currentRow->Cells->Count; j++)
-				{
-					String^ gridVal = currentRow->Cells[j]->Value->ToString();
-					if (gridVal != originalData[i][j])
-					{
-						match = false;
-						break;
-					}
-				}
-
-				if (match)
+				if (originalData[i][0] == uniqueKey)
 				{
 					originalRowIndex = i;
 					break;
 				}
 			}
-
 			if (originalRowIndex == -1)
 			{
 				MessageBox::Show("Не удалось найти оригинальную строку.");
 				return;
 			}
-
-			int originalColIndex = e->ColumnIndex;
 			origrow = originalRowIndex;
-			origcol = originalColIndex;
-			if (originalColIndex != 0)
+			origcol = gridCol;
+			cellValue1 = this->dataGridView1->Rows[gridRow]->Cells[e->ColumnIndex]->Value->ToString();
+			if (gridCol != 0)
 			{
-				String^ value = currentRow->Cells[originalColIndex]->Value->ToString();
 				label7->Text = String::Format(L"Ячейка ({0},{1})", origrow, origcol);
-				if (originalColIndex != 0)
+				textBoxeditold->Text = cellValue1;
+				label7->Visible = true;
+				label11->Visible = true;
+				label12->Visible = true;
+				textBoxeditold->Visible = true;
+				buttonedit->Visible = true;
+				buttoneditundo->Visible = true;
+				buttonloadtable->Visible = true;
+				String^ str;
+				if ((str = "147")->Contains(origcol.ToString()))
 				{
-					textBoxeditold->Text = value;
-					label7->Visible = true;
-					label11->Visible = true;
-					label12->Visible = true;
-					textBoxeditold->Visible = true;
-					buttonedit->Visible = true;
-					buttoneditundo->Visible = true;
-					String^ str;
-					if ((str = "147")->Contains(originalColIndex.ToString()))
-					{
-						maskedTextBoxedit->Visible = true;
-						maskedTextBoxedittime->Visible = false;
-						textBoxedit->Visible = false;
-						textBoxedit->Text = "";
-						maskedTextBoxedit->Text = "";
-						maskedTextBoxedittime->Text = "";
+					maskedTextBoxedit->Visible = true;
+					maskedTextBoxedittime->Visible = false;
+					textBoxedit->Visible = false;
+					textBoxedit->Text = "";
+					maskedTextBoxedit->Text = "";
+					maskedTextBoxedittime->Text = "";
 
-					}
-					else if ((str = "56")->Contains(originalColIndex.ToString()))
-					{
-						maskedTextBoxedittime->Visible = true;
-						maskedTextBoxedit->Visible = false;
-						textBoxedit->Visible = false;
-						textBoxedit->Text = "";
-						maskedTextBoxedit->Text = "";
-						maskedTextBoxedittime->Text = "";
-					}
-					else
-					{
-						maskedTextBoxedittime->Visible = false;
-						maskedTextBoxedit->Visible = false;
-						textBoxedit->Visible = true;
-						textBoxedit->Text = "";
-						maskedTextBoxedit->Text = "";
-						maskedTextBoxedittime->Text = "";
-					}
+				}
+				else if ((str = "56")->Contains(origcol.ToString()))
+				{
+					maskedTextBoxedittime->Visible = true;
+					maskedTextBoxedit->Visible = false;
+					textBoxedit->Visible = false;
+					textBoxedit->Text = "";
+					maskedTextBoxedit->Text = "";
+					maskedTextBoxedittime->Text = "";
+				}
+				else
+				{
+					maskedTextBoxedittime->Visible = false;
+					maskedTextBoxedit->Visible = false;
+					textBoxedit->Visible = true;
+					textBoxedit->Text = "";
+					maskedTextBoxedit->Text = "";
+					maskedTextBoxedittime->Text = "";
 				}
 			}
 		}
@@ -1483,32 +1484,44 @@ private: System::Void buttoneditundo_Click(System::Object^ sender, System::Event
 	maskedTextBoxedittime->Text = "";
 	buttonedit->Visible = false;
 	buttoneditundo->Visible = false;
+	buttonloadtable->Visible = false;
 }
-private: System::Void UpdateFileValue(int row, int col, String^ newValue)
-{
-	try
-	{
-		array<String^>^ lines = File::ReadAllLines("auto.txt");
-		if (lines->Length <= row + 1)
+private: System::Void SaveOriginalDataToFile(int row, int col){
+		try
 		{
-			MessageBox::Show("Указанная строка выходит за пределы файла.");
-			return;
+			List<String^>^ lines = gcnew List<String^>();
+			array<String^>^ headers = gcnew array<String^>(dataGridView1->ColumnCount);
+			for (int i = 0; i < dataGridView1->ColumnCount; i++)
+				headers[i] = dataGridView1->Columns[i]->HeaderText;
+			lines->Add(String::Join("|", headers));
+			for (int i = 0; i < originalData->Length; i++)
+			{
+				array<String^>^ rowData = originalData[i];
+				array<String^>^ processedRow = gcnew array<String^>(rowData->Length);
+
+				for (int j = 0; j < rowData->Length; j++)
+				{
+					if (i == row && j == col)
+					{
+						if (textBoxedit->Visible == true) processedRow[j] = textBoxedit->Text;
+						else if (maskedTextBoxedit->Visible == true) processedRow[j] = maskedTextBoxedit->Text;
+						else if (maskedTextBoxedittime->Visible == true) processedRow[j] = maskedTextBoxedittime->Text;
+					}
+					else
+					{
+						processedRow[j] = rowData[j];
+					}
+				}
+
+				lines->Add(String::Join("|", processedRow));
+			}
+			File::WriteAllLines("auto.txt", lines);
 		}
-		array<String^>^ cells = lines[row + 1]->Split(gcnew array<Char>{ '|' }, StringSplitOptions::None);
-		if (col >= cells->Length)
+		catch (Exception^ ex)
 		{
-			MessageBox::Show("Указанный столбец выходит за пределы таблицы.");
-			return;
+			MessageBox::Show("Ошибка при сохранении файла: " + ex->Message);
 		}
-		cells[col] = newValue;
-		lines[row + 1] = String::Join("|", cells);
-		File::WriteAllLines("auto.txt", lines);
-	}
-	catch (Exception^ ex)
-	{
-		MessageBox::Show("Ошибка при обработке файла: " + ex->Message);
-	}
-}
+	}	
 private: System::Void buttonedit_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ newValue = "";
 	if (maskedTextBoxedit->Visible && maskedTextBoxedit->Text != "")
@@ -1517,20 +1530,14 @@ private: System::Void buttonedit_Click(System::Object^ sender, System::EventArgs
 		newValue = maskedTextBoxedittime->Text;
 	else if (textBoxedit->Visible && textBoxedit->Text != "")
 		newValue = textBoxedit->Text;
-	if (newValue == "")
+	if (newValue != "")
 	{
-		MessageBox::Show("Введите новое значение");
-		return;
-	}
-	UpdateFileValue(origrow, origcol, newValue);
-	label7->Visible = true;
-	textBoxedit->Text = "";
-	maskedTextBoxedit->Text = "";
-	maskedTextBoxedittime->Text = "";
-	dataGridView1->Columns->Clear();
-	dataGridView1->Rows->Clear();
-	LoadDataFromFile("auto.txt");
-	buttoneditundo_Click(nullptr, nullptr);
+		SaveOriginalDataToFile(origrow, origcol);
+		// buttoneditundo_Click(nullptr, nullptr);
+	}	
+	else MessageBox::Show("Введите новое значение");
+	
+
 }
 private: System::Void maskedTextBoxedittime_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
@@ -1547,6 +1554,9 @@ private: System::Void maskedTextBoxedit_TextChanged(System::Object^ sender, Syst
 		mtb->Text = mtb->Text->Replace(" ", "");
 		mtb->SelectionStart = mtb->Text->Length;
 	}
+}
+private: System::Void buttonloadtable_Click(System::Object^ sender, System::EventArgs^ e) {
+	LoadDataFromFile("auto.txt");
 }
 };
 }
