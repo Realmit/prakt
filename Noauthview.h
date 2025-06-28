@@ -122,22 +122,16 @@ namespace prakt {
 
 			if (lines->Length == 0)
 				return;
-
-			// Очистка таблицы
 			dataGridView1->Columns->Clear();
 			dataGridView1->Rows->Clear();
-
-			// Разбираем заголовок
-			array<String^>^ headers = lines[0]->Split(' ');
+			array<String^>^ headers = lines[0]->Split('|');
 			for each (String ^ header in headers)
 			{
 				dataGridView1->Columns->Add(header, header);
 			}
-
-			// Добавляем строки
 			for (int i = 1; i < lines->Length; i++)
 			{
-				array<String^>^ row = lines[i]->Split(' ');
+				array<String^>^ row = lines[i]->Split('|');
 				dataGridView1->Rows->Add(row);
 			}
 		}

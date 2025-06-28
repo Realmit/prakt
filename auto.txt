@@ -4,4 +4,4 @@
 3|20|Pos.Poteryaevka|TC"Volna"|3|05.30|17.30|135
 4|3|Pos.Nalchik|Pos.Lesnoe|3|04.20|22.10|350
 5|6|Depo3|Pos.Konuhi|4|07.30|18.00|35
-6|5|RinokYantarni|Pos.Yuzhni|20|05.00|13.00|100
+6|5|RinokYantarni|Pos.Yuzhni|15|05.00|13.00|100

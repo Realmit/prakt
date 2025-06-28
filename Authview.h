@@ -135,7 +135,7 @@ private: System::Windows::Forms::TextBox^ textBoxeditold;
 private: System::Windows::Forms::Label^ label11;
 private: System::Windows::Forms::Label^ label12;
 private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxedittime;
-private: System::Windows::Forms::Button^ buttonloadtable;
+
 
 
 public:
@@ -143,7 +143,7 @@ public:
 public:
 	Form^ obj;
 	String^ cellValue1;
-	int adminmodelocal = 0, origrow = 0, origcol = 0;
+	int adminmodelocal = 0, origrow = 0, origcol = 0, temprow = 0, tempcol = 0;
 		Authview(void)
 		{
 			InitializeComponent();
@@ -246,7 +246,6 @@ private: System::ComponentModel::IContainer^ components;
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->maskedTextBoxedittime = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->buttonloadtable = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -284,7 +283,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonadminreg->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonadminreg->Location = System::Drawing::Point(578, 380);
+			this->buttonadminreg->Location = System::Drawing::Point(722, 380);
 			this->buttonadminreg->Margin = System::Windows::Forms::Padding(2);
 			this->buttonadminreg->Name = L"buttonadminreg";
 			this->buttonadminreg->Size = System::Drawing::Size(218, 58);
@@ -297,7 +296,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonload->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonload->Location = System::Drawing::Point(467, 380);
+			this->buttonload->Location = System::Drawing::Point(611, 380);
 			this->buttonload->Margin = System::Windows::Forms::Padding(2);
 			this->buttonload->Name = L"buttonload";
 			this->buttonload->Size = System::Drawing::Size(107, 58);
@@ -433,6 +432,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->maskedTextBoxnum->TabIndex = 24;
 			this->maskedTextBoxnum->ValidatingType = System::Int32::typeid;
 			this->maskedTextBoxnum->Visible = false;
+			this->maskedTextBoxnum->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxnum_TextChanged);
 			// 
 			// checkBoxactivesost
 			// 
@@ -506,6 +506,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->maskedTextBoxcount->TabIndex = 42;
 			this->maskedTextBoxcount->ValidatingType = System::Int32::typeid;
 			this->maskedTextBoxcount->Visible = false;
+			this->maskedTextBoxcount->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxcount_TextChanged);
 			// 
 			// checkBoxcount
 			// 
@@ -594,6 +595,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->maskedTextBoxstime->TabIndex = 54;
 			this->maskedTextBoxstime->ValidatingType = System::DateTime::typeid;
 			this->maskedTextBoxstime->Visible = false;
+			this->maskedTextBoxstime->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxstime_TextChanged);
 			// 
 			// checkBoxstime
 			// 
@@ -682,6 +684,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->maskedTextBoxltime->TabIndex = 60;
 			this->maskedTextBoxltime->ValidatingType = System::DateTime::typeid;
 			this->maskedTextBoxltime->Visible = false;
+			this->maskedTextBoxltime->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxltime_TextChanged);
 			// 
 			// checkBoxltime
 			// 
@@ -770,6 +773,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->maskedTextBoxprice->TabIndex = 66;
 			this->maskedTextBoxprice->ValidatingType = System::Int32::typeid;
 			this->maskedTextBoxprice->Visible = false;
+			this->maskedTextBoxprice->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxprice_TextChanged);
 			// 
 			// checkBoxprice
 			// 
@@ -881,6 +885,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->textBoxsost->Size = System::Drawing::Size(188, 35);
 			this->textBoxsost->TabIndex = 81;
 			this->textBoxsost->Visible = false;
+			this->textBoxsost->TextChanged += gcnew System::EventHandler(this, &Authview::textBoxsost_TextChanged);
 			// 
 			// textBoxlost
 			// 
@@ -914,10 +919,10 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonedit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonedit->Location = System::Drawing::Point(959, 367);
+			this->buttonedit->Location = System::Drawing::Point(962, 367);
 			this->buttonedit->Margin = System::Windows::Forms::Padding(2);
 			this->buttonedit->Name = L"buttonedit";
-			this->buttonedit->Size = System::Drawing::Size(169, 58);
+			this->buttonedit->Size = System::Drawing::Size(203, 58);
 			this->buttonedit->TabIndex = 84;
 			this->buttonedit->Text = L"Редактировать";
 			this->buttonedit->UseVisualStyleBackColor = true;
@@ -928,10 +933,10 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttoneditundo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttoneditundo->Location = System::Drawing::Point(1237, 367);
+			this->buttoneditundo->Location = System::Drawing::Point(1169, 367);
 			this->buttoneditundo->Margin = System::Windows::Forms::Padding(2);
 			this->buttoneditundo->Name = L"buttoneditundo";
-			this->buttoneditundo->Size = System::Drawing::Size(135, 58);
+			this->buttoneditundo->Size = System::Drawing::Size(206, 58);
 			this->buttoneditundo->TabIndex = 85;
 			this->buttoneditundo->Text = L"Отмена";
 			this->buttoneditundo->UseVisualStyleBackColor = true;
@@ -1031,20 +1036,6 @@ private: System::ComponentModel::IContainer^ components;
 			this->maskedTextBoxedittime->Visible = false;
 			this->maskedTextBoxedittime->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxedittime_TextChanged);
 			// 
-			// buttonloadtable
-			// 
-			this->buttonloadtable->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(254)));
-			this->buttonloadtable->Location = System::Drawing::Point(1132, 367);
-			this->buttonloadtable->Margin = System::Windows::Forms::Padding(2);
-			this->buttonloadtable->Name = L"buttonloadtable";
-			this->buttonloadtable->Size = System::Drawing::Size(101, 58);
-			this->buttonloadtable->TabIndex = 93;
-			this->buttonloadtable->Text = L"Обновить таблицу";
-			this->buttonloadtable->UseVisualStyleBackColor = true;
-			this->buttonloadtable->Visible = false;
-			this->buttonloadtable->Click += gcnew System::EventHandler(this, &Authview::buttonloadtable_Click);
-			// 
 			// Authview
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1052,7 +1043,6 @@ private: System::ComponentModel::IContainer^ components;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(1824, 449);
 			this->ControlBox = false;
-			this->Controls->Add(this->buttonloadtable);
 			this->Controls->Add(this->maskedTextBoxedittime);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label11);
@@ -1281,8 +1271,6 @@ private: System::Void checkBoxactivesost_CheckedChanged(System::Object^ sender, 
 	textBoxsost->Enabled = !textBoxsost->Enabled;
 	textBoxsost->Text = "";
 }
-private: System::Void textBoxlost_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
 private: System::Void checkBoxlost_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	textBoxlost->Enabled = !textBoxlost->Enabled;
 	textBoxlost->Text = "";
@@ -1408,8 +1396,8 @@ private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, Syst
 	{
 		if (e->RowIndex >= 0 && e->ColumnIndex > 0)
 		{
-			int gridRow = e->RowIndex;
-			int gridCol = e->ColumnIndex;
+			int gridRow = temprow = e->RowIndex;
+			int gridCol = tempcol = e->ColumnIndex;
 			String^ uniqueKey = this->dataGridView1->Rows[gridRow]->Cells[0]->Value->ToString();
 			int originalRowIndex = -1;
 			for (int i = 0; i < originalData->Length; i++)
@@ -1438,7 +1426,6 @@ private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, Syst
 				textBoxeditold->Visible = true;
 				buttonedit->Visible = true;
 				buttoneditundo->Visible = true;
-				buttonloadtable->Visible = true;
 				String^ str;
 				if ((str = "147")->Contains(origcol.ToString()))
 				{
@@ -1484,7 +1471,6 @@ private: System::Void buttoneditundo_Click(System::Object^ sender, System::Event
 	maskedTextBoxedittime->Text = "";
 	buttonedit->Visible = false;
 	buttoneditundo->Visible = false;
-	buttonloadtable->Visible = false;
 }
 private: System::Void SaveOriginalDataToFile(int row, int col){
 		try
@@ -1532,8 +1518,10 @@ private: System::Void buttonedit_Click(System::Object^ sender, System::EventArgs
 		newValue = textBoxedit->Text;
 	if (newValue != "")
 	{
+
 		SaveOriginalDataToFile(origrow, origcol);
-		// buttoneditundo_Click(nullptr, nullptr);
+		LoadDataFromFile("auto.txt");
+		buttoneditundo_Click(nullptr, nullptr);
 	}	
 	else MessageBox::Show("Введите новое значение");
 	
@@ -1555,8 +1543,61 @@ private: System::Void maskedTextBoxedit_TextChanged(System::Object^ sender, Syst
 		mtb->SelectionStart = mtb->Text->Length;
 	}
 }
-private: System::Void buttonloadtable_Click(System::Object^ sender, System::EventArgs^ e) {
-	LoadDataFromFile("auto.txt");
+private: System::Void maskedTextBoxnum_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void textBoxsost_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void maskedTextBoxcount_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void textBoxlost_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}	
+private: System::Void maskedTextBoxstime_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void maskedTextBoxltime_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void maskedTextBoxprice_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
 }
 };
 }
