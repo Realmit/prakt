@@ -11,6 +11,7 @@ namespace prakt {
 	using namespace System::Drawing;
 	using namespace System::IO;
 	using namespace System::Windows::Forms;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Сводка для Authview
@@ -18,7 +19,8 @@ namespace prakt {
 	public ref class Authview : public System::Windows::Forms::Form
 	{
 	public:
-		Form^ obj;
+	Form^ obj; 
+	int origrow = 0, origcol = 0;
 	private: System::Windows::Forms::Button^ buttonload;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ buttonsearch;
@@ -126,6 +128,16 @@ namespace prakt {
 	public:
 		int currentVolume = 500;
 private: System::Windows::Forms::Button^ buttonreset;
+private: System::Windows::Forms::Button^ buttonedit;
+private: System::Windows::Forms::Button^ buttoneditundo;
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxedit;
+private: System::Windows::Forms::TextBox^ textBoxedit;
+private: System::Windows::Forms::Label^ label7;
+private: System::Windows::Forms::TextBox^ textBoxeditold;
+private: System::Windows::Forms::Label^ label11;
+private: System::Windows::Forms::Label^ label12;
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxedittime;
+
 public:
 
 public:
@@ -223,6 +235,15 @@ private: System::ComponentModel::IContainer^ components;
 			this->textBoxsost = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxlost = (gcnew System::Windows::Forms::TextBox());
 			this->buttonreset = (gcnew System::Windows::Forms::Button());
+			this->buttonedit = (gcnew System::Windows::Forms::Button());
+			this->buttoneditundo = (gcnew System::Windows::Forms::Button());
+			this->maskedTextBoxedit = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->textBoxedit = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->textBoxeditold = (gcnew System::Windows::Forms::TextBox());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->maskedTextBoxedittime = (gcnew System::Windows::Forms::MaskedTextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -260,7 +281,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonadminreg->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonadminreg->Location = System::Drawing::Point(722, 380);
+			this->buttonadminreg->Location = System::Drawing::Point(578, 380);
 			this->buttonadminreg->Margin = System::Windows::Forms::Padding(2);
 			this->buttonadminreg->Name = L"buttonadminreg";
 			this->buttonadminreg->Size = System::Drawing::Size(218, 58);
@@ -273,7 +294,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonload->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonload->Location = System::Drawing::Point(611, 380);
+			this->buttonload->Location = System::Drawing::Point(467, 380);
 			this->buttonload->Margin = System::Windows::Forms::Padding(2);
 			this->buttonload->Name = L"buttonload";
 			this->buttonload->Size = System::Drawing::Size(107, 58);
@@ -886,6 +907,125 @@ private: System::ComponentModel::IContainer^ components;
 			this->buttonreset->Visible = false;
 			this->buttonreset->Click += gcnew System::EventHandler(this, &Authview::buttonreset_Click);
 			// 
+			// buttonedit
+			// 
+			this->buttonedit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttonedit->Location = System::Drawing::Point(999, 367);
+			this->buttonedit->Margin = System::Windows::Forms::Padding(2);
+			this->buttonedit->Name = L"buttonedit";
+			this->buttonedit->Size = System::Drawing::Size(169, 58);
+			this->buttonedit->TabIndex = 84;
+			this->buttonedit->Text = L"Редактировать";
+			this->buttonedit->UseVisualStyleBackColor = true;
+			this->buttonedit->Visible = false;
+			this->buttonedit->Click += gcnew System::EventHandler(this, &Authview::buttonedit_Click);
+			// 
+			// buttoneditundo
+			// 
+			this->buttoneditundo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttoneditundo->Location = System::Drawing::Point(1172, 367);
+			this->buttoneditundo->Margin = System::Windows::Forms::Padding(2);
+			this->buttoneditundo->Name = L"buttoneditundo";
+			this->buttoneditundo->Size = System::Drawing::Size(169, 58);
+			this->buttoneditundo->TabIndex = 85;
+			this->buttoneditundo->Text = L"Отмена";
+			this->buttoneditundo->UseVisualStyleBackColor = true;
+			this->buttoneditundo->Visible = false;
+			this->buttoneditundo->Click += gcnew System::EventHandler(this, &Authview::buttoneditundo_Click);
+			// 
+			// maskedTextBoxedit
+			// 
+			this->maskedTextBoxedit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->maskedTextBoxedit->Location = System::Drawing::Point(1060, 316);
+			this->maskedTextBoxedit->Mask = L"00000";
+			this->maskedTextBoxedit->Name = L"maskedTextBoxedit";
+			this->maskedTextBoxedit->Size = System::Drawing::Size(188, 35);
+			this->maskedTextBoxedit->TabIndex = 86;
+			this->maskedTextBoxedit->ValidatingType = System::Int32::typeid;
+			this->maskedTextBoxedit->Visible = false;
+			// 
+			// textBoxedit
+			// 
+			this->textBoxedit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->textBoxedit->Location = System::Drawing::Point(1060, 316);
+			this->textBoxedit->Margin = System::Windows::Forms::Padding(2);
+			this->textBoxedit->MaxLength = 12;
+			this->textBoxedit->Name = L"textBoxedit";
+			this->textBoxedit->Size = System::Drawing::Size(188, 35);
+			this->textBoxedit->TabIndex = 87;
+			this->textBoxedit->Visible = false;
+			// 
+			// label7
+			// 
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label7->ForeColor = System::Drawing::Color::Transparent;
+			this->label7->Location = System::Drawing::Point(954, 235);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(151, 35);
+			this->label7->TabIndex = 88;
+			this->label7->Text = L"Ячейка (,)";
+			this->label7->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->label7->Visible = false;
+			// 
+			// textBoxeditold
+			// 
+			this->textBoxeditold->Enabled = false;
+			this->textBoxeditold->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->textBoxeditold->Location = System::Drawing::Point(1060, 275);
+			this->textBoxeditold->Margin = System::Windows::Forms::Padding(2);
+			this->textBoxeditold->MaxLength = 12;
+			this->textBoxeditold->Name = L"textBoxeditold";
+			this->textBoxeditold->Size = System::Drawing::Size(188, 35);
+			this->textBoxeditold->TabIndex = 89;
+			this->textBoxeditold->Visible = false;
+			// 
+			// label11
+			// 
+			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label11->ForeColor = System::Drawing::Color::Transparent;
+			this->label11->Location = System::Drawing::Point(954, 275);
+			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(102, 35);
+			this->label11->TabIndex = 90;
+			this->label11->Text = L"Старое:";
+			this->label11->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->label11->Visible = false;
+			// 
+			// label12
+			// 
+			this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 17, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label12->ForeColor = System::Drawing::Color::Transparent;
+			this->label12->Location = System::Drawing::Point(954, 316);
+			this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(102, 35);
+			this->label12->TabIndex = 91;
+			this->label12->Text = L"Новое:";
+			this->label12->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->label12->Visible = false;
+			// 
+			// maskedTextBoxedittime
+			// 
+			this->maskedTextBoxedittime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(254)));
+			this->maskedTextBoxedittime->Location = System::Drawing::Point(1060, 316);
+			this->maskedTextBoxedittime->Mask = L"00.00";
+			this->maskedTextBoxedittime->Name = L"maskedTextBoxedittime";
+			this->maskedTextBoxedittime->Size = System::Drawing::Size(188, 35);
+			this->maskedTextBoxedittime->TabIndex = 92;
+			this->maskedTextBoxedittime->ValidatingType = System::DateTime::typeid;
+			this->maskedTextBoxedittime->Visible = false;
+			// 
 			// Authview
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -893,6 +1033,15 @@ private: System::ComponentModel::IContainer^ components;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(1824, 449);
 			this->ControlBox = false;
+			this->Controls->Add(this->maskedTextBoxedittime);
+			this->Controls->Add(this->label12);
+			this->Controls->Add(this->label11);
+			this->Controls->Add(this->textBoxeditold);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->textBoxedit);
+			this->Controls->Add(this->maskedTextBoxedit);
+			this->Controls->Add(this->buttoneditundo);
+			this->Controls->Add(this->buttonedit);
 			this->Controls->Add(this->buttonreset);
 			this->Controls->Add(this->textBoxlost);
 			this->Controls->Add(this->textBoxsost);
@@ -962,14 +1111,14 @@ private: System::ComponentModel::IContainer^ components;
 				return;
 			dataGridView1->Columns->Clear();
 			dataGridView1->Rows->Clear();
-			array<String^>^ headers = lines[0]->Split(' ');
+			array<String^>^ headers = lines[0]->Split('|');
 			for each (String ^ header in headers)
 			{
 				dataGridView1->Columns->Add(header, header);
 			}
 			for (int i = 1; i < lines->Length; i++)
 			{
-				array<String^>^ row = lines[i]->Split(' ');
+				array<String^>^ row = lines[i]->Split('|');
 				dataGridView1->Rows->Add(row);
 			}
 		}
@@ -1004,7 +1153,7 @@ private: System::ComponentModel::IContainer^ components;
 
 				for (int i = 1; i < lines->Length; i++)
 				{
-					array<String^>^ row = lines[i]->Split(' ');
+					array<String^>^ row = lines[i]->Split('|');
 					originalData[i - 1] = row;
 				}
 			}
@@ -1041,48 +1190,6 @@ private: System::ComponentModel::IContainer^ components;
 		buttonsearch->Text = "Выберите файл 'auto.txt', чтобы выполнить поиск";
 	}
 }
-	private:
-		void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
-		{
-			if (e->RowIndex >= 0 && e->ColumnIndex >= 0)
-			{
-				DataGridViewRow^ currentRow = dataGridView1->Rows[e->RowIndex];
-				int originalRowIndex = -1;
-				for (int i = 0; i < originalData->Length; i++)
-				{
-					bool found = true;
-					for (int j = 0; j < currentRow->Cells->Count; j++)
-					{
-						if (currentRow->Cells[j]->Value->ToString() != originalData[i][j])
-						{
-							found = false;
-							break;
-						}
-					}
-					if (found)
-					{
-						originalRowIndex = i;
-						break;
-					}
-				}
-				if (originalRowIndex != -1)
-				{
-					int originalColIndex = e->ColumnIndex;
-					String^ value = currentRow->Cells[originalColIndex]->Value->ToString();
-
-					MessageBox::Show(
-						String::Format("Двойной клик!\nОригинальная строка: {0}\nОригинальный столбец: {1}\nЗначение: {2}",
-							originalRowIndex, originalColIndex, value),
-						"Информация о ячейке",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Information);
-				}
-				else
-				{
-					MessageBox::Show("Не удалось найти оригинал этой строки.");
-				}
-			}
-		}
 private: System::Void buttonsearch_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (this->ClientSize == System::Drawing::Size(1820, 450))
 		this->ClientSize = System::Drawing::Size(1400, 450); // 1416
@@ -1199,16 +1306,13 @@ private: System::Void buttonsearch2_Click(System::Object^ sender, System::EventA
 			int input = Convert::ToInt32(maskedTextBoxprice->Text);
 			if (!((checkBoxpriceless->Checked && (cellValue < input)) || (checkBoxpriceequal->Checked && (cellValue == input)) || checkBoxpricemore->Checked && (cellValue > input))) match = false;
 		}
-
 		// Начальное время
 		if (checkBoxstime->Checked && maskedTextBoxstime->Text != "")
 		{
-			// Парсим значение из ячейки таблицы
 			String^ cellValue = row->Cells[5]->Value->ToString();
 			DateTime cellDT;
 			if (!DateTime::TryParseExact(cellValue, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, cellDT))
-				continue; // пропускаем некорректные данные
-			// Парсим введённое пользователем значение
+				continue;
 			DateTime inputDT;
 			if (!DateTime::TryParseExact(maskedTextBoxstime->Text, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, inputDT))
 			{
@@ -1225,7 +1329,6 @@ private: System::Void buttonsearch2_Click(System::Object^ sender, System::EventA
 			DateTime cellDT;
 			if (!DateTime::TryParseExact(cellValue, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, cellDT))
 				continue;
-
 			DateTime inputDT;
 			if (!DateTime::TryParseExact(maskedTextBoxltime->Text, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, inputDT))
 			{
@@ -1281,7 +1384,137 @@ private: System::Void buttonreset_Click(System::Object^ sender, System::EventArg
 		column->SortMode = DataGridViewColumnSortMode::Programmatic;
 	}
 }
+private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+	{
+		if (e->RowIndex >= 0 && e->ColumnIndex >= 0)
+		{
+			DataGridViewRow^ currentRow = dataGridView1->Rows[e->RowIndex];
+			int originalRowIndex = -1;
+			for (int i = 0; i < originalData->Length; i++)
+			{
+				bool found = true;
+				for (int j = 0; j < currentRow->Cells->Count; j++)
+				{
+					if (currentRow->Cells[j]->Value->ToString() != originalData[i][j])
+					{
+						found = false;
+						break;
+					}
+				}
+				if (found)
+				{
+					originalRowIndex = i;
+					break;
+				}
+			}
+			int originalColIndex = e->ColumnIndex;
+			origcol = originalColIndex;
+			if (originalColIndex != 0)
+			{
+				String^ value = currentRow->Cells[originalColIndex]->Value->ToString();
+				label7->Text = String::Format(L"Ячейка ({0},{1})", originalRowIndex, originalColIndex);
+				origcol = originalColIndex; origrow = originalRowIndex;
+				if (originalColIndex != 0)
+				{
+					textBoxeditold->Text = value;
+					label7->Visible = true;
+					label11->Visible = true;
+					label12->Visible = true;
+					textBoxeditold->Visible = true;
+					buttonedit->Visible = true;
+					buttoneditundo->Visible = true;
+					String^ str;
+					if ((str = "147")->Contains(originalColIndex.ToString()))
+					{
+						maskedTextBoxedit->Visible = true;
+						maskedTextBoxedittime->Visible = false;
+						textBoxedit->Visible = false;
+						textBoxedit->Text = "";
+						maskedTextBoxedit->Text = "";
+						maskedTextBoxedittime->Text = "";
 
+					}
+					else if ((str = "56")->Contains(originalColIndex.ToString()))
+					{
+						maskedTextBoxedittime->Visible = true;
+						maskedTextBoxedit->Visible = false;
+						textBoxedit->Visible = false;
+						textBoxedit->Text = "";
+						maskedTextBoxedit->Text = "";
+						maskedTextBoxedittime->Text = "";
+					}
+					else
+					{
+						maskedTextBoxedittime->Visible = false;
+						maskedTextBoxedit->Visible = false;
+						textBoxedit->Visible = true;
+						textBoxedit->Text = "";
+						maskedTextBoxedit->Text = "";
+						maskedTextBoxedittime->Text = "";
+					}
+				}
+			}
+		}
+	}
+private: System::Void buttoneditundo_Click(System::Object^ sender, System::EventArgs^ e) {
+	label7->Visible = false;
+	label11->Visible = false;
+	label12->Visible = false;
+	textBoxeditold->Visible = false;
+	textBoxedit->Visible = false;
+	textBoxedit->Text = "";
+	maskedTextBoxedit->Visible = false;
+	maskedTextBoxedit->Text = "";
+	maskedTextBoxedittime->Visible = false;
+	maskedTextBoxedittime->Text = "";
+	buttonedit->Visible = false;
+	buttoneditundo->Visible = false;
+}
+private: System::Void SaveOriginalDataToFile(int row, int col){
+		try
+		{
+			List<String^>^ lines = gcnew List<String^>();
+			array<String^>^ headers = gcnew array<String^>(dataGridView1->ColumnCount);
+			for (int i = 0; i < dataGridView1->ColumnCount; i++)
+				headers[i] = dataGridView1->Columns[i]->HeaderText;
+			lines->Add(String::Join("|", headers));
+			for (int i = 0; i < originalData->Length; i++)
+			{
+				array<String^>^ rowData = originalData[i];
+				array<String^>^ processedRow = gcnew array<String^>(rowData->Length);
+
+				for (int j = 0; j < rowData->Length; j++)
+				{
+					if (i == row && j == col)
+					{
+						if (textBoxedit->Visible == true) processedRow[j] = textBoxedit->Text;
+						else if (maskedTextBoxedit->Visible == true) processedRow[j] = maskedTextBoxedit->Text;
+						else if (maskedTextBoxedittime->Visible == true) processedRow[j] = maskedTextBoxedittime->Text;
+					}
+					else
+					{
+						processedRow[j] = rowData[j];
+					}
+				}
+
+				lines->Add(String::Join("|", processedRow));
+			}
+			File::WriteAllLines("auto.txt", lines);
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show("Ошибка при сохранении файла: " + ex->Message);
+		}
+	}
+private: System::Void buttonedit_Click(System::Object^ sender, System::EventArgs^ e) {
+	if ((textBoxedit->Visible == true && textBoxedit->Text != "") || (maskedTextBoxedit->Visible == true && maskedTextBoxedit->Text != "") || (maskedTextBoxedittime->Visible == true && maskedTextBoxedittime->Text != ""))
+	{
+		SaveOriginalDataToFile(origrow, origcol);
+		LoadDataFromFile("auto.txt");
+	}
+	else MessageBox::Show("Введите новое значение");
+
+}
 };
 }
 	
