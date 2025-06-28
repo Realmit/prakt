@@ -1170,9 +1170,9 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 		if (buttonsearch->Enabled == true)
 		{
-			int offsetX = (rand->Next(500, 600) - 10); // -10 to +10
-			int offsetY = (rand->Next(500, 600) - 10);
-			this->StartPosition = FormStartPosition::Manual;
+			int offsetX = (rand->Next(-50, 50) - 10); // -10 to +10
+			int offsetY = (rand->Next(-50, 50) - 10);
+			
 			this->SetDesktopLocation(offsetX, offsetY);
 		}
 	}
@@ -1218,3 +1218,4 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 };
 }
+	
