@@ -1406,7 +1406,7 @@ private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, Syst
 			String^ uniqueKey = this->dataGridView1->Rows[gridRow]->Cells[0]->Value->ToString();
 			int originalRowIndex = -1;
 			for (int i = 0; i < originalData->Length; i++)
-			{
+			{	
 				if (originalData[i][0] == uniqueKey)
 				{
 					originalRowIndex = i;
@@ -1462,6 +1462,38 @@ private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, Syst
 				}
 			}
 		}
+		else if (e->RowIndex >= 0 && e->ColumnIndex == 0)
+		{
+			int originalRowIndex = -1;
+			String^ uniqueKey = this->dataGridView1->Rows[e->RowIndex]->Cells[0]->Value->ToString();
+			for (int i = 0; i < originalData->Length; i++)
+			{
+				if (originalData[i][0] == uniqueKey)
+				{
+					originalRowIndex = i;
+					break;
+				}
+			}
+			if (originalRowIndex == -1)
+			{
+				MessageBox::Show("Не удалось найти оригинальную строку.");
+				return;
+			}
+			array<array<String^>^>^ newData = gcnew array<array<String^>^>(originalData->Length - 1);
+			int newIndex = 0;
+			for (int i = 0; i < originalData->Length; i++)
+			{
+				if (i != originalRowIndex)
+				{
+					newData[newIndex++] = originalData[i];
+				}
+			}
+			originalData = newData; // Заменяем оригинальный массив
+			SaveOriginalDataToFileNoEdit();
+			LoadDataFromFile("auto.txt");
+			MessageBox::Show("Строка удалена.");
+		}
+
 	}
 private: System::Void buttoneditundo_Click(System::Object^ sender, System::EventArgs^ e) {
 	label7->Visible = false;
@@ -1477,6 +1509,26 @@ private: System::Void buttoneditundo_Click(System::Object^ sender, System::Event
 	buttonedit->Visible = false;
 	buttoneditundo->Visible = false;
 }
+private: System::Void SaveOriginalDataToFileNoEdit()
+	{
+		try
+		{
+			List<String^>^ lines = gcnew List<String^>();
+			array<String^>^ headers = gcnew array<String^>(dataGridView1->ColumnCount);
+			for (int i = 0; i < dataGridView1->ColumnCount; i++)
+				headers[i] = dataGridView1->Columns[i]->HeaderText;
+			lines->Add(String::Join("|", headers));
+			for (int i = 0; i < originalData->Length; i++)
+			{
+				lines->Add(String::Join("|", originalData[i]));
+			}
+			File::WriteAllLines("auto.txt", lines);
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show("Ошибка при сохранении файла: " + ex->Message);
+		}
+	}
 private: System::Void SaveOriginalDataToFile(int row, int col){
 		try
 		{
@@ -1523,7 +1575,6 @@ private: System::Void buttonedit_Click(System::Object^ sender, System::EventArgs
 		newValue = textBoxedit->Text;
 	if (newValue != "")
 	{
-
 		SaveOriginalDataToFile(origrow, origcol);
 		LoadDataFromFile("auto.txt");
 		buttoneditundo_Click(nullptr, nullptr);

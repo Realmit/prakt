@@ -69,4 +69,18 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="autolongback.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="auto.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="autoback.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="loginf.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

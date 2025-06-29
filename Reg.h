@@ -220,7 +220,7 @@ namespace prakt {
 			this->buttonremove->Name = L"buttonremove";
 			this->buttonremove->Size = System::Drawing::Size(159, 58);
 			this->buttonremove->TabIndex = 17;
-			this->buttonremove->Text = L"5";
+			this->buttonremove->Text = L"Удалить";
 			this->buttonremove->UseVisualStyleBackColor = true;
 			this->buttonremove->Click += gcnew System::EventHandler(this, &Reg::buttonremove_Click);
 			// 

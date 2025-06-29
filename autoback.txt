@@ -5,4 +5,3 @@
 4|3|Pos.Nalchik|Pos.Lesnoe|2|04.20|22.10|350
 5|6|Depo3|Pos.Konuhi|4|07.30|18.00|35
 6|5|RinokYantarni|Pos.Yuzhni|15|05.00|13.00|100
-
