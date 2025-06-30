@@ -32,11 +32,13 @@ namespace prakt {
 		bool blinkact2 = false;
 		bool blinkact3 = false;
 		System::String^ pas;
+		int topscore;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ buttonchecklogin;
 	private: System::Windows::Forms::Label^ label5;
 
 	public:
+		System::String^ loginpublic;
 		int adminmodelocal = 0;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	public:
@@ -366,7 +368,7 @@ private: System::Void buttonauthconfirm_Click(System::Object^ sender, System::Ev
 		blinkact3 = 0;
 		blinkact = 0; label4->Visible = false;
 		this->Hide();
-		Authview^ obj1 = gcnew Authview(this, adminmodelocal);
+		Authview^ obj1 = gcnew Authview(this, adminmodelocal, loginpublic, topscore);
 		obj1->ShowDialog();
 	}
 }
@@ -387,6 +389,8 @@ private: System::Void buttonchecklogin_Click(System::Object^ sender, System::Eve
 			strcpy(buff, p);
 			if (strcmp(buff, cmptmp) == 0)
 			{
+				std::string buffstr(buff);
+				loginpublic = gcnew String(buffstr.c_str());
 				fg = 1;
 				blinkact2 = 1; blinkact3 = 0; label5->Visible = false;
 				buttonchecklogin->Enabled = false;
@@ -401,8 +405,13 @@ private: System::Void buttonchecklogin_Click(System::Object^ sender, System::Eve
 			}
 			else if (fg == 1)
 			{
+				fg = 2;
 				std::string buffstr(buff);
 				pas = gcnew String(buffstr.c_str());
+			}
+			else if (fg == 2)
+			{
+				topscore = Convert::ToInt32(System::String(buff).Substring(1));
 				fclose(f);
 				exitint = 1;
 			}

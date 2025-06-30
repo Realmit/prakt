@@ -274,6 +274,7 @@ namespace prakt {
 			this->Controls->Add(this->buttonbacktomain);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->MaximizeBox = false;
 			this->Name = L"Reg";
 			this->Text = L"Панель администратора";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Reg::Reg_FormClosing);

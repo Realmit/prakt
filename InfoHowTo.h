@@ -129,6 +129,7 @@ namespace prakt {
 				static_cast<System::Byte>(254)));
 			this->richTextBox1->Location = System::Drawing::Point(12, 89);
 			this->richTextBox1->Name = L"richTextBox1";
+			this->richTextBox1->ReadOnly = true;
 			this->richTextBox1->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Vertical;
 			this->richTextBox1->Size = System::Drawing::Size(491, 585);
 			this->richTextBox1->TabIndex = 15;
@@ -147,6 +148,7 @@ namespace prakt {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->buttonbacktomain);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->MaximizeBox = false;
 			this->Name = L"InfoHowTo";
 			this->Text = L"Справочная информация";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &InfoHowTo::InfoHowTo_FormClosing);

@@ -1,4 +1,5 @@
 ﻿#include "Reg.h"
+#include "Game.h"
 #include <windows.h>
 #pragma once
 namespace prakt {
@@ -143,24 +144,23 @@ public:
 public:
 	Form^ obj;
 	String^ cellValue1;
+	System::String^ loginpublic; short int topscore;
 	int adminmodelocal = 0, origrow = 0, origcol = 0, temprow = 0, tempcol = 0;
-		Authview(void)
+private: System::Windows::Forms::Button^ buttongameauth;
+public:
+	Authview(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
-		Authview(Form^ obj1, int adminmode)
+		Authview(Form^ obj1, int adminmode, System::String^ loginpassed, short int topscore1)
 		{
 			obj = obj1;
 			adminmodelocal = adminmode;
+			loginpublic = loginpassed;
+			topscore = topscore1;
 			InitializeComponent();
 		}
 	protected:
-		/// <summary>
-		/// Освободить все используемые ресурсы.
-		/// </summary>
 		~Authview()
 		{
 			if (components)
@@ -246,6 +246,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->maskedTextBoxedittime = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->buttongameauth = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -283,7 +284,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonadminreg->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonadminreg->Location = System::Drawing::Point(722, 380);
+			this->buttonadminreg->Location = System::Drawing::Point(560, 380);
 			this->buttonadminreg->Margin = System::Windows::Forms::Padding(2);
 			this->buttonadminreg->Name = L"buttonadminreg";
 			this->buttonadminreg->Size = System::Drawing::Size(218, 58);
@@ -296,7 +297,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonload->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonload->Location = System::Drawing::Point(611, 380);
+			this->buttonload->Location = System::Drawing::Point(449, 380);
 			this->buttonload->Margin = System::Windows::Forms::Padding(2);
 			this->buttonload->Name = L"buttonload";
 			this->buttonload->Size = System::Drawing::Size(107, 58);
@@ -967,6 +968,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->textBoxedit->Size = System::Drawing::Size(188, 35);
 			this->textBoxedit->TabIndex = 87;
 			this->textBoxedit->Visible = false;
+			this->textBoxedit->TextChanged += gcnew System::EventHandler(this, &Authview::textBoxedit_TextChanged);
 			// 
 			// label7
 			// 
@@ -1027,14 +1029,28 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->maskedTextBoxedittime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(254)));
-			this->maskedTextBoxedittime->Location = System::Drawing::Point(1061, 316);
+			this->maskedTextBoxedittime->Location = System::Drawing::Point(1060, 316);
 			this->maskedTextBoxedittime->Mask = L"00.00";
 			this->maskedTextBoxedittime->Name = L"maskedTextBoxedittime";
 			this->maskedTextBoxedittime->Size = System::Drawing::Size(188, 35);
 			this->maskedTextBoxedittime->TabIndex = 92;
 			this->maskedTextBoxedittime->ValidatingType = System::DateTime::typeid;
 			this->maskedTextBoxedittime->Visible = false;
+			this->maskedTextBoxedittime->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &Authview::maskedTextBoxedittime_MaskInputRejected);
 			this->maskedTextBoxedittime->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxedittime_TextChanged);
+			// 
+			// buttongameauth
+			// 
+			this->buttongameauth->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttongameauth->Location = System::Drawing::Point(782, 380);
+			this->buttongameauth->Margin = System::Windows::Forms::Padding(2);
+			this->buttongameauth->Name = L"buttongameauth";
+			this->buttongameauth->Size = System::Drawing::Size(158, 58);
+			this->buttongameauth->TabIndex = 93;
+			this->buttongameauth->Text = L"Игра";
+			this->buttongameauth->UseVisualStyleBackColor = true;
+			this->buttongameauth->Click += gcnew System::EventHandler(this, &Authview::buttongameauth_Click);
 			// 
 			// Authview
 			// 
@@ -1043,6 +1059,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->ClientSize = System::Drawing::Size(1824, 449);
 			this->ControlBox = false;
+			this->Controls->Add(this->buttongameauth);
 			this->Controls->Add(this->maskedTextBoxedittime);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label11);
@@ -1590,6 +1607,8 @@ private: System::Void maskedTextBoxedittime_TextChanged(System::Object^ sender, 
 		mtb->Text = mtb->Text->Replace(" ", "");
 		mtb->SelectionStart = mtb->Text->Length;
 	}
+	if (maskedTextBoxedittime->Text != "") buttonedit->Enabled = true;
+	else buttonedit->Enabled = false;
 }
 private: System::Void maskedTextBoxedit_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
@@ -1598,6 +1617,8 @@ private: System::Void maskedTextBoxedit_TextChanged(System::Object^ sender, Syst
 		mtb->Text = mtb->Text->Replace(" ", "");
 		mtb->SelectionStart = mtb->Text->Length;
 	}
+	if (maskedTextBoxedit->Text != "") buttonedit->Enabled = true;
+	else buttonedit->Enabled = false;
 }
 private: System::Void maskedTextBoxnum_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
@@ -1654,6 +1675,17 @@ private: System::Void maskedTextBoxprice_TextChanged(System::Object^ sender, Sys
 		mtb->Text = mtb->Text->Replace(" ", "");
 		mtb->SelectionStart = mtb->Text->Length;
 	}
+}
+private: System::Void buttongameauth_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	Game^ obj2 = gcnew Game(this, loginpublic, topscore);
+	obj2->ShowDialog();
+}
+private: System::Void textBoxedit_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (textBoxedit->Text != "") buttonedit->Enabled = true;
+	else buttonedit->Enabled = false;
+}
+private: System::Void maskedTextBoxedittime_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
 }
 };
 }

@@ -122,6 +122,8 @@
     <ClCompile Include="Auth.cpp" />
     <ClCompile Include="Authview.cpp" />
     <ClCompile Include="EULA.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HowToGame.cpp" />
     <ClCompile Include="Info.cpp" />
     <ClCompile Include="InfoHowTo.cpp" />
     <ClCompile Include="MainForm.cpp" />
@@ -136,6 +138,12 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EULA.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="HowToGame.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Info.h">
@@ -164,6 +172,12 @@
     <EmbeddedResource Include="EULA.resx">
       <DependentUpon>EULA.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Game.resx">
+      <DependentUpon>Game.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HowToGame.resx">
+      <DependentUpon>HowToGame.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Info.resx">
       <DependentUpon>Info.h</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +201,7 @@
     <Text Include="auto.txt" />
     <Text Include="autoback.txt" />
     <Text Include="autolongback.txt" />
+    <Text Include="game.txt" />
     <Text Include="loginf.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

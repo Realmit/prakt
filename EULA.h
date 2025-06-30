@@ -86,6 +86,7 @@ namespace prakt {
 				static_cast<System::Byte>(254)));
 			this->richTextBox1->Location = System::Drawing::Point(12, 12);
 			this->richTextBox1->Name = L"richTextBox1";
+			this->richTextBox1->ReadOnly = true;
 			this->richTextBox1->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Vertical;
 			this->richTextBox1->Size = System::Drawing::Size(491, 667);
 			this->richTextBox1->TabIndex = 16;
@@ -95,13 +96,15 @@ namespace prakt {
 			// 
 			this->richTextBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->richTextBox2->Location = System::Drawing::Point(11, 12);
+			this->richTextBox2->Location = System::Drawing::Point(12, 12);
 			this->richTextBox2->Name = L"richTextBox2";
+			this->richTextBox2->ReadOnly = true;
 			this->richTextBox2->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Vertical;
 			this->richTextBox2->Size = System::Drawing::Size(493, 667);
 			this->richTextBox2->TabIndex = 17;
 			this->richTextBox2->Text = resources->GetString(L"richTextBox2.Text");
 			this->richTextBox2->Visible = false;
+			this->richTextBox2->TextChanged += gcnew System::EventHandler(this, &EULA::richTextBox2_TextChanged);
 			// 
 			// buttoneng
 			// 
@@ -127,6 +130,7 @@ namespace prakt {
 			this->Controls->Add(this->richTextBox2);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->buttonbacktomain);
+			this->MaximizeBox = false;
 			this->Name = L"EULA";
 			this->Text = L"EULA";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &EULA::EULA_FormClosing);
@@ -151,6 +155,8 @@ private: System::Void EULA_FormClosing(System::Object^ sender, System::Windows::
 	if (e->CloseReason == CloseReason::UserClosing) {
 		Application::Exit();
 	}
+}
+private: System::Void richTextBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
