@@ -1527,10 +1527,14 @@ private: System::ComponentModel::IContainer^ components;
 		if (adminmodelocal == 1) {
 			buttonadminreg->Visible = true;
 			buttonload->Visible = true;
+			buttonremovetable->Visible = true;
+			button1->Visible = true;
 		}
 		else {
 			buttonadminreg->Visible = false;
 			buttonload->Visible = false;
+			buttonremovetable->Visible = false;
+			button1->Visible = false;
 		}
 		LoadDataFromFile("auto.txt");
 		for each (DataGridViewColumn ^ column in dataGridView1->Columns)
