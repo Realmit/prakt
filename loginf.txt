@@ -1,6 +1,6 @@
 admin
 |asd
-|0
+|600
 asdas
 |asdas
 |0

@@ -146,6 +146,42 @@ public:
 	String^ cellValue1;
 	System::String^ loginpublic; short int topscore;
 	int adminmodelocal = 0, origrow = 0, origcol = 0, temprow = 0, tempcol = 0;
+private: System::Windows::Forms::Button^ buttonaddtotable;
+private: System::Windows::Forms::TextBox^ textBoxlostadd;
+
+private: System::Windows::Forms::TextBox^ textBoxsostadd;
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxpriceadd;
+
+
+private: System::Windows::Forms::Label^ label13;
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxltimeadd;
+
+private: System::Windows::Forms::Label^ label14;
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxstimeadd;
+
+private: System::Windows::Forms::Label^ label15;
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxcountadd;
+
+private: System::Windows::Forms::Label^ label16;
+private: System::Windows::Forms::Label^ label17;
+private: System::Windows::Forms::Label^ label18;
+private: System::Windows::Forms::Button^ buttonaddconfirm;
+
+
+
+
+private: System::Windows::Forms::PictureBox^ pictureBox2;
+
+private: System::Windows::Forms::Timer^ timer1;
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxnumadd;
+
+
+
+private: System::Windows::Forms::Label^ label19;
+private: System::Windows::Forms::Button^ buttonremovetable;
+private: System::Windows::Forms::Button^ button1;
+
+public:
 private: System::Windows::Forms::Button^ buttongameauth;
 public:
 	Authview(void)
@@ -190,6 +226,7 @@ private: System::ComponentModel::IContainer^ components;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Authview::typeid));
 			this->buttonbacktomain = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
@@ -247,8 +284,29 @@ private: System::ComponentModel::IContainer^ components;
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->maskedTextBoxedittime = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->buttongameauth = (gcnew System::Windows::Forms::Button());
+			this->buttonaddtotable = (gcnew System::Windows::Forms::Button());
+			this->textBoxlostadd = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxsostadd = (gcnew System::Windows::Forms::TextBox());
+			this->maskedTextBoxpriceadd = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->maskedTextBoxltimeadd = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->maskedTextBoxstimeadd = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->maskedTextBoxcountadd = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->buttonaddconfirm = (gcnew System::Windows::Forms::Button());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->maskedTextBoxnumadd = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->label19 = (gcnew System::Windows::Forms::Label());
+			this->buttonremovetable = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// buttonbacktomain
@@ -284,12 +342,12 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonadminreg->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonadminreg->Location = System::Drawing::Point(560, 380);
+			this->buttonadminreg->Location = System::Drawing::Point(494, 377);
 			this->buttonadminreg->Margin = System::Windows::Forms::Padding(2);
 			this->buttonadminreg->Name = L"buttonadminreg";
-			this->buttonadminreg->Size = System::Drawing::Size(218, 58);
+			this->buttonadminreg->Size = System::Drawing::Size(79, 58);
 			this->buttonadminreg->TabIndex = 13;
-			this->buttonadminreg->Text = L"Меню администратора";
+			this->buttonadminreg->Text = L"Меню админ";
 			this->buttonadminreg->UseVisualStyleBackColor = true;
 			this->buttonadminreg->Click += gcnew System::EventHandler(this, &Authview::buttonadminreg_Click);
 			// 
@@ -297,7 +355,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttonload->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonload->Location = System::Drawing::Point(449, 380);
+			this->buttonload->Location = System::Drawing::Point(193, 377);
 			this->buttonload->Margin = System::Windows::Forms::Padding(2);
 			this->buttonload->Name = L"buttonload";
 			this->buttonload->Size = System::Drawing::Size(107, 58);
@@ -586,6 +644,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			// maskedTextBoxstime
 			// 
+			this->maskedTextBoxstime->Culture = (gcnew System::Globalization::CultureInfo(L""));
 			this->maskedTextBoxstime->Enabled = false;
 			this->maskedTextBoxstime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
@@ -675,6 +734,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			// maskedTextBoxltime
 			// 
+			this->maskedTextBoxltime->Culture = (gcnew System::Globalization::CultureInfo(L""));
 			this->maskedTextBoxltime->Enabled = false;
 			this->maskedTextBoxltime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
@@ -1043,7 +1103,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->buttongameauth->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttongameauth->Location = System::Drawing::Point(782, 380);
+			this->buttongameauth->Location = System::Drawing::Point(577, 377);
 			this->buttongameauth->Margin = System::Windows::Forms::Padding(2);
 			this->buttongameauth->Name = L"buttongameauth";
 			this->buttongameauth->Size = System::Drawing::Size(158, 58);
@@ -1052,13 +1112,295 @@ private: System::ComponentModel::IContainer^ components;
 			this->buttongameauth->UseVisualStyleBackColor = true;
 			this->buttongameauth->Click += gcnew System::EventHandler(this, &Authview::buttongameauth_Click);
 			// 
+			// buttonaddtotable
+			// 
+			this->buttonaddtotable->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttonaddtotable->Location = System::Drawing::Point(739, 377);
+			this->buttonaddtotable->Margin = System::Windows::Forms::Padding(2);
+			this->buttonaddtotable->Name = L"buttonaddtotable";
+			this->buttonaddtotable->Size = System::Drawing::Size(201, 58);
+			this->buttonaddtotable->TabIndex = 94;
+			this->buttonaddtotable->Text = L"Добавить запись";
+			this->buttonaddtotable->UseVisualStyleBackColor = true;
+			this->buttonaddtotable->Click += gcnew System::EventHandler(this, &Authview::buttonaddtotable_Click);
+			// 
+			// textBoxlostadd
+			// 
+			this->textBoxlostadd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->textBoxlostadd->Location = System::Drawing::Point(450, 475);
+			this->textBoxlostadd->Margin = System::Windows::Forms::Padding(2);
+			this->textBoxlostadd->MaxLength = 12;
+			this->textBoxlostadd->Name = L"textBoxlostadd";
+			this->textBoxlostadd->Size = System::Drawing::Size(188, 35);
+			this->textBoxlostadd->TabIndex = 108;
+			this->textBoxlostadd->Visible = false;
+			// 
+			// textBoxsostadd
+			// 
+			this->textBoxsostadd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->textBoxsostadd->Location = System::Drawing::Point(233, 475);
+			this->textBoxsostadd->Margin = System::Windows::Forms::Padding(2);
+			this->textBoxsostadd->MaxLength = 12;
+			this->textBoxsostadd->Name = L"textBoxsostadd";
+			this->textBoxsostadd->Size = System::Drawing::Size(188, 35);
+			this->textBoxsostadd->TabIndex = 107;
+			this->textBoxsostadd->Visible = false;
+			// 
+			// maskedTextBoxpriceadd
+			// 
+			this->maskedTextBoxpriceadd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(254)));
+			this->maskedTextBoxpriceadd->Location = System::Drawing::Point(1298, 475);
+			this->maskedTextBoxpriceadd->Mask = L"00000";
+			this->maskedTextBoxpriceadd->Name = L"maskedTextBoxpriceadd";
+			this->maskedTextBoxpriceadd->Size = System::Drawing::Size(188, 35);
+			this->maskedTextBoxpriceadd->TabIndex = 106;
+			this->maskedTextBoxpriceadd->ValidatingType = System::Int32::typeid;
+			this->maskedTextBoxpriceadd->Visible = false;
+			this->maskedTextBoxpriceadd->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxpriceadd_TextChanged);
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->label13->ForeColor = System::Drawing::Color::Transparent;
+			this->label13->Location = System::Drawing::Point(1298, 441);
+			this->label13->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(79, 31);
+			this->label13->TabIndex = 105;
+			this->label13->Text = L"Цена";
+			this->label13->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label13->Visible = false;
+			// 
+			// maskedTextBoxltimeadd
+			// 
+			this->maskedTextBoxltimeadd->Culture = (gcnew System::Globalization::CultureInfo(L""));
+			this->maskedTextBoxltimeadd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(254)));
+			this->maskedTextBoxltimeadd->Location = System::Drawing::Point(1084, 475);
+			this->maskedTextBoxltimeadd->Mask = L"00.00";
+			this->maskedTextBoxltimeadd->Name = L"maskedTextBoxltimeadd";
+			this->maskedTextBoxltimeadd->Size = System::Drawing::Size(188, 35);
+			this->maskedTextBoxltimeadd->TabIndex = 104;
+			this->maskedTextBoxltimeadd->ValidatingType = System::DateTime::typeid;
+			this->maskedTextBoxltimeadd->Visible = false;
+			this->maskedTextBoxltimeadd->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxltimeadd_TextChanged);
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->label14->ForeColor = System::Drawing::Color::Transparent;
+			this->label14->Location = System::Drawing::Point(1078, 441);
+			this->label14->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(155, 31);
+			this->label14->TabIndex = 103;
+			this->label14->Text = L"Кон. время";
+			this->label14->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label14->Visible = false;
+			// 
+			// maskedTextBoxstimeadd
+			// 
+			this->maskedTextBoxstimeadd->Culture = (gcnew System::Globalization::CultureInfo(L""));
+			this->maskedTextBoxstimeadd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(254)));
+			this->maskedTextBoxstimeadd->Location = System::Drawing::Point(873, 475);
+			this->maskedTextBoxstimeadd->Mask = L"00.00";
+			this->maskedTextBoxstimeadd->Name = L"maskedTextBoxstimeadd";
+			this->maskedTextBoxstimeadd->Size = System::Drawing::Size(188, 35);
+			this->maskedTextBoxstimeadd->TabIndex = 102;
+			this->maskedTextBoxstimeadd->ValidatingType = System::DateTime::typeid;
+			this->maskedTextBoxstimeadd->Visible = false;
+			this->maskedTextBoxstimeadd->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxstimeadd_TextChanged);
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->label15->ForeColor = System::Drawing::Color::Transparent;
+			this->label15->Location = System::Drawing::Point(867, 441);
+			this->label15->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(156, 31);
+			this->label15->TabIndex = 101;
+			this->label15->Text = L"Нач. время";
+			this->label15->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label15->Visible = false;
+			// 
+			// maskedTextBoxcountadd
+			// 
+			this->maskedTextBoxcountadd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(254)));
+			this->maskedTextBoxcountadd->Location = System::Drawing::Point(663, 475);
+			this->maskedTextBoxcountadd->Mask = L"00000";
+			this->maskedTextBoxcountadd->Name = L"maskedTextBoxcountadd";
+			this->maskedTextBoxcountadd->Size = System::Drawing::Size(188, 35);
+			this->maskedTextBoxcountadd->TabIndex = 100;
+			this->maskedTextBoxcountadd->ValidatingType = System::Int32::typeid;
+			this->maskedTextBoxcountadd->Visible = false;
+			this->maskedTextBoxcountadd->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxcountadd_TextChanged);
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->label16->ForeColor = System::Drawing::Color::Transparent;
+			this->label16->Location = System::Drawing::Point(657, 442);
+			this->label16->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(161, 31);
+			this->label16->TabIndex = 99;
+			this->label16->Text = L"Количество";
+			this->label16->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label16->Visible = false;
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->label17->ForeColor = System::Drawing::Color::Transparent;
+			this->label17->Location = System::Drawing::Point(447, 441);
+			this->label17->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(206, 31);
+			this->label17->TabIndex = 98;
+			this->label17->Text = L"Кон. остановка";
+			this->label17->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label17->Visible = false;
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->label18->ForeColor = System::Drawing::Color::Transparent;
+			this->label18->Location = System::Drawing::Point(227, 442);
+			this->label18->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(207, 31);
+			this->label18->TabIndex = 97;
+			this->label18->Text = L"Нач. остановка";
+			this->label18->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label18->Visible = false;
+			// 
+			// buttonaddconfirm
+			// 
+			this->buttonaddconfirm->Enabled = false;
+			this->buttonaddconfirm->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttonaddconfirm->Location = System::Drawing::Point(1516, 452);
+			this->buttonaddconfirm->Margin = System::Windows::Forms::Padding(2);
+			this->buttonaddconfirm->Name = L"buttonaddconfirm";
+			this->buttonaddconfirm->Size = System::Drawing::Size(296, 58);
+			this->buttonaddconfirm->TabIndex = 109;
+			this->buttonaddconfirm->Text = L"Добавить запись";
+			this->buttonaddconfirm->UseVisualStyleBackColor = true;
+			this->buttonaddconfirm->Click += gcnew System::EventHandler(this, &Authview::buttonaddconfirm_Click);
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->pictureBox2->Location = System::Drawing::Point(1397, 9);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(413, 426);
+			this->pictureBox2->TabIndex = 110;
+			this->pictureBox2->TabStop = false;
+			// 
+			// timer1
+			// 
+			this->timer1->Interval = 1000;
+			this->timer1->Tick += gcnew System::EventHandler(this, &Authview::timer1_Tick);
+			// 
+			// maskedTextBoxnumadd
+			// 
+			this->maskedTextBoxnumadd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(254)));
+			this->maskedTextBoxnumadd->Location = System::Drawing::Point(10, 475);
+			this->maskedTextBoxnumadd->Mask = L"00000";
+			this->maskedTextBoxnumadd->Name = L"maskedTextBoxnumadd";
+			this->maskedTextBoxnumadd->Size = System::Drawing::Size(188, 35);
+			this->maskedTextBoxnumadd->TabIndex = 112;
+			this->maskedTextBoxnumadd->ValidatingType = System::Int32::typeid;
+			this->maskedTextBoxnumadd->Visible = false;
+			this->maskedTextBoxnumadd->TextChanged += gcnew System::EventHandler(this, &Authview::maskedTextBoxnumadd_TextChanged);
+			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->label19->ForeColor = System::Drawing::Color::Transparent;
+			this->label19->Location = System::Drawing::Point(10, 441);
+			this->label19->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(98, 31);
+			this->label19->TabIndex = 111;
+			this->label19->Text = L"Номер";
+			this->label19->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label19->Visible = false;
+			// 
+			// buttonremovetable
+			// 
+			this->buttonremovetable->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->buttonremovetable->Location = System::Drawing::Point(304, 377);
+			this->buttonremovetable->Margin = System::Windows::Forms::Padding(2);
+			this->buttonremovetable->Name = L"buttonremovetable";
+			this->buttonremovetable->Size = System::Drawing::Size(91, 58);
+			this->buttonremovetable->TabIndex = 113;
+			this->buttonremovetable->Text = L"Удалить таблицу";
+			this->buttonremovetable->UseVisualStyleBackColor = true;
+			this->buttonremovetable->Click += gcnew System::EventHandler(this, &Authview::buttonremovetable_Click);
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			this->button1->Location = System::Drawing::Point(399, 377);
+			this->button1->Margin = System::Windows::Forms::Padding(2);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(91, 58);
+			this->button1->TabIndex = 114;
+			this->button1->Text = L"Создать таблицу";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Authview::button1_Click);
+			// 
 			// Authview
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->ClientSize = System::Drawing::Size(1824, 449);
+			this->ClientSize = System::Drawing::Size(1824, 529);
 			this->ControlBox = false;
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->buttonremovetable);
+			this->Controls->Add(this->maskedTextBoxnumadd);
+			this->Controls->Add(this->label19);
+			this->Controls->Add(this->pictureBox2);
+			this->Controls->Add(this->buttonaddconfirm);
+			this->Controls->Add(this->textBoxlostadd);
+			this->Controls->Add(this->textBoxsostadd);
+			this->Controls->Add(this->maskedTextBoxpriceadd);
+			this->Controls->Add(this->label13);
+			this->Controls->Add(this->maskedTextBoxltimeadd);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->maskedTextBoxstimeadd);
+			this->Controls->Add(this->label15);
+			this->Controls->Add(this->maskedTextBoxcountadd);
+			this->Controls->Add(this->label16);
+			this->Controls->Add(this->label17);
+			this->Controls->Add(this->label18);
+			this->Controls->Add(this->buttonaddtotable);
 			this->Controls->Add(this->buttongameauth);
 			this->Controls->Add(this->maskedTextBoxedittime);
 			this->Controls->Add(this->label12);
@@ -1124,6 +1466,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->Load += gcnew System::EventHandler(this, &Authview::Authview_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -1133,7 +1476,27 @@ private: System::ComponentModel::IContainer^ components;
 		try
 		{
 			array<String^>^ lines = File::ReadAllLines(filePath);
+			if (filePath == "auto.txt")
+			{
+				try
+				{
+					array<String^>^ lines = File::ReadAllLines("auto.txt");
+					if (lines->Length <= 1) return;
 
+					originalData = gcnew array<array<String^>^>(lines->Length - 1);
+
+					for (int i = 1; i < lines->Length; i++)
+					{
+						array<String^>^ row = lines[i]->Split('|');
+						originalData[i - 1] = row;
+					}
+				}
+				catch (Exception^ ex)
+				{
+					MessageBox::Show("Ошибка чтения файла: " + ex->Message);
+					return;
+				}
+			}
 			if (lines->Length == 0)
 				return;
 			dataGridView1->Columns->Clear();
@@ -1214,18 +1577,26 @@ private: System::ComponentModel::IContainer^ components;
 	}
 	if (Path::GetFileName(openFileDialog->FileName) == "auto.txt") {
 		buttonsearch->Enabled = true;
+		buttonaddtotable->Enabled = true;
 		buttonsearch->Text = "Открыть меню поиска";
+		buttonaddtotable->Text = "Добавить запись";
 	}
 	else
 	{
 		buttonsearch->Enabled = false;
+		buttonaddtotable->Enabled = false;
 		buttonsearch->Text = "Выберите файл 'auto.txt', чтобы выполнить поиск";
+		buttonaddtotable->Text = "Выберите файл 'auto.txt'";
 	}
 }
 private: System::Void buttonsearch_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (this->ClientSize == System::Drawing::Size(1820, 450))
 		this->ClientSize = System::Drawing::Size(1400, 450); // 1416
-	else this->ClientSize = System::Drawing::Size(1820, 450); // 1840
+	else
+	{
+		this->ClientSize = System::Drawing::Size(1820, 450); // 1840
+		pictureBox2->Visible = false;
+	}
 	if (buttonsearch->Text == "Открыть меню поиска") buttonsearch->Text = "Отмена";
 	else if (buttonsearch->Text == "Отмена") buttonsearch->Text = "Открыть меню поиска";
 	buttonreset->Visible = !buttonreset->Visible;
@@ -1686,6 +2057,178 @@ private: System::Void textBoxedit_TextChanged(System::Object^ sender, System::Ev
 	else buttonedit->Enabled = false;
 }
 private: System::Void maskedTextBoxedittime_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
+}
+private: System::Void AddNewRecordToFile()
+{
+	try
+	{
+		array<String^>^ lines = File::ReadAllLines("auto.txt");
+		int lastNumber = 0;
+		for each (String ^ line in lines)
+		{
+			array<String^>^ parts = line->Split('|');
+			if (parts->Length > 0 && Int32::TryParse(parts[0], lastNumber)) {}
+		}
+		int newNumber = lastNumber + 1;
+		String^ number = maskedTextBoxnumadd->Text;
+		String^ sost = textBoxsostadd->Text;
+		String^ lost = textBoxlostadd->Text;
+		String^ count = maskedTextBoxcountadd->Text;
+		String^ stime = maskedTextBoxstimeadd->Text;
+		String^ ltime = maskedTextBoxltimeadd->Text;
+		String^ price = maskedTextBoxpriceadd->Text;
+		String^ newLine = String::Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}",
+			newNumber.ToString(), number, sost, lost, count, stime, ltime, price);
+		File::AppendAllText("auto.txt", newLine);
+		MessageBox::Show("Запись успешно добавлена!");
+		LoadDataFromFile("auto.txt");
+	}
+	catch (Exception^ ex)
+	{
+		MessageBox::Show("Ошибка при добавлении записи: " + ex->Message);
+	}
+}
+private: System::Void buttonaddtotable_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (this->ClientSize == System::Drawing::Size(1820, 450))// 1840; 488
+		buttonsearch_Click(nullptr, nullptr);
+	if (this->ClientSize == System::Drawing::Size(1400, 450)){
+		timer1->Enabled = true;
+		pictureBox2->Visible = true;
+		buttonaddtotable->Text = "Отменить добавление записи";
+		this->ClientSize = System::Drawing::Size(1820, 530);
+		label13->Visible = !label13->Visible; label14->Visible = !label14->Visible; label15->Visible = !label15->Visible;
+		label16->Visible = !label16->Visible; label17->Visible = !label17->Visible; label18->Visible = !label18->Visible;
+		label19->Visible = !label19->Visible;  maskedTextBoxnumadd->Visible = !maskedTextBoxnumadd->Visible;
+		maskedTextBoxcountadd->Visible = !maskedTextBoxcountadd->Visible; maskedTextBoxstimeadd->Visible = !maskedTextBoxstimeadd->Visible;
+		maskedTextBoxltimeadd->Visible = !maskedTextBoxltimeadd->Visible; maskedTextBoxpriceadd->Visible = !maskedTextBoxpriceadd->Visible;
+		textBoxsostadd->Visible = !textBoxsostadd->Visible; textBoxlostadd->Visible = !textBoxlostadd->Visible;
+	}
+	else
+	{
+		timer1->Enabled = false;
+		pictureBox2->Visible = false;
+		label13->Visible = !label13->Visible; label14->Visible = !label14->Visible; label15->Visible = !label15->Visible;
+		label16->Visible = !label16->Visible; label17->Visible = !label17->Visible; label18->Visible = !label18->Visible;
+		label19->Visible = !label19->Visible;  maskedTextBoxnumadd->Visible = !maskedTextBoxnumadd->Visible;
+		maskedTextBoxcountadd->Visible = !maskedTextBoxcountadd->Visible; maskedTextBoxstimeadd->Visible = !maskedTextBoxstimeadd->Visible;
+	    maskedTextBoxltimeadd->Visible = !maskedTextBoxltimeadd->Visible; maskedTextBoxpriceadd->Visible = !maskedTextBoxpriceadd->Visible;
+		textBoxsostadd->Visible = !textBoxsostadd->Visible; textBoxlostadd->Visible = !textBoxlostadd->Visible;
+		this->ClientSize = System::Drawing::Size(1400, 450);
+	}
+}
+private: System::Void buttonaddconfirm_Click(System::Object^ sender, System::EventArgs^ e) {
+	DateTime inputDT;
+	if (!DateTime::TryParseExact(maskedTextBoxstimeadd->Text, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, inputDT))
+	{
+		MessageBox::Show("Введите корректное время в формате 00.00 в ячейке начального времени");
+		return;
+	}
+	else if (!DateTime::TryParseExact(maskedTextBoxstimeadd->Text, "HH.mm", nullptr, System::Globalization::DateTimeStyles::None, inputDT))
+	{
+		MessageBox::Show("Введите корректное время в формате 00.00 в ячейке начального времени");
+		return;
+	}
+	else
+	{
+		AddNewRecordToFile();
+	}
+
+}
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	if ((maskedTextBoxnumadd->Text != "") && (maskedTextBoxcountadd->Text != "") && (maskedTextBoxstimeadd->Text != "") && (maskedTextBoxltimeadd->Text != "") && (maskedTextBoxpriceadd->Text != "") && (textBoxsostadd->Text != "") && (textBoxlostadd->Text != ""))
+		buttonaddconfirm->Enabled = true;
+	else buttonaddconfirm->Enabled = false;
+}
+private: System::Void maskedTextBoxnumadd_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void maskedTextBoxcountadd_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void maskedTextBoxstimeadd_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void maskedTextBoxltimeadd_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void maskedTextBoxpriceadd_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	MaskedTextBox^ mtb = dynamic_cast<MaskedTextBox^>(sender);
+	if (mtb != nullptr && mtb->Text->Contains(" "))
+	{
+		mtb->Text = mtb->Text->Replace(" ", "");
+		mtb->SelectionStart = mtb->Text->Length;
+	}
+}
+private: System::Void buttonremovetable_Click(System::Object^ sender, System::EventArgs^ e) {
+	OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
+	openFileDialog->Title = "Выберите файл для удаления";
+	openFileDialog->Filter = "Текстовые файлы (*.txt)|*.txt";
+
+	if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		String^ filePath = openFileDialog->FileName;
+
+		if (!File::Exists(filePath))
+		{
+			MessageBox::Show("Файл не найден.");
+			return;
+		}
+
+		if (MessageBox::Show("Удалить файл " + Path::GetFileName(filePath) + "?", "Подтверждение",
+			MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes)
+		{
+			try
+			{
+				File::Delete(filePath);
+				MessageBox::Show("Файл удален.");
+				dataGridView1->Rows->Clear();
+				dataGridView1->Columns->Clear();
+				originalData = nullptr;
+			}
+			catch (Exception^ ex)
+			{
+				MessageBox::Show("Ошибка: " + ex->Message);
+			}
+		}
+	}
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ filePath = "auto.txt";
+
+	try
+	{
+		array<String^>^ lines = gcnew array<String^>(1);
+		lines[0] = "№|Номер|Начальная остановка|Конечная остановка|Количество|Начальное время|Конечное время|Цена";
+		File::WriteAllLines(filePath, lines);
+		MessageBox::Show("Файл auto.txt создан с заголовками.", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		dataGridView1->Columns->Clear();
+		dataGridView1->Rows->Clear();
+		LoadDataFromFile(filePath);
+	}
+	catch (Exception^ ex)
+	{
+		MessageBox::Show("Ошибка при создании файла: " + ex->Message, "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
 };
 }

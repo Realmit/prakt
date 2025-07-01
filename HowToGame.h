@@ -66,15 +66,16 @@ namespace prakt {
 			this->richTextBox2->Location = System::Drawing::Point(10, 12);
 			this->richTextBox2->Name = L"richTextBox2";
 			this->richTextBox2->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Vertical;
-			this->richTextBox2->Size = System::Drawing::Size(493, 667);
+			this->richTextBox2->Size = System::Drawing::Size(493, 195);
 			this->richTextBox2->TabIndex = 18;
-			this->richTextBox2->Text = L"Правила игры";
+			this->richTextBox2->Text = resources->GetString(L"richTextBox2.Text");
+			this->richTextBox2->UseWaitCursor = true;
 			// 
 			// buttonbacktomain
 			// 
 			this->buttonbacktomain->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(254)));
-			this->buttonbacktomain->Location = System::Drawing::Point(10, 684);
+			this->buttonbacktomain->Location = System::Drawing::Point(9, 212);
 			this->buttonbacktomain->Margin = System::Windows::Forms::Padding(2);
 			this->buttonbacktomain->Name = L"buttonbacktomain";
 			this->buttonbacktomain->Size = System::Drawing::Size(494, 50);
@@ -88,7 +89,7 @@ namespace prakt {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->ClientSize = System::Drawing::Size(515, 745);
+			this->ClientSize = System::Drawing::Size(515, 278);
 			this->ControlBox = false;
 			this->Controls->Add(this->buttonbacktomain);
 			this->Controls->Add(this->richTextBox2);

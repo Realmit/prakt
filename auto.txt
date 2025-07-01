@@ -1,8 +1,11 @@
 №|Номер|Начальная остановка|Конечная остановка|Количество|Начальное время|Конечное время|Цена
+1|90|Depo1|LDP"Spartak2"|4|06.00|22.00|35
+2|10|Depo2|mkr.Baltika|10|07.00|19.30|35
 3|20|Pos.Poteryaevka|TC"Volna"|3|05.30|17.30|135
 4|3|Pos.Nalchik|Pos.Lesnoe|2|04.20|22.10|350
 5|6|Depo3|Pos.Konuhi|4|07.30|18.00|35
 6|5|RinokYantarni|Pos.Yuzhni|15|05.00|13.00|100
+7|7|Depo4|Pos.Gorniy|5|06.15|20.30|45
 8|8|Depo5|mkr.Zvezda|6|07.10|19.45|50
 9|11|mkr.Yuzhniy|TC"Ocean"|4|05.45|18.20|120
 10|12|Pos.Ozero|LDP"Zapadniy"|3|04.50|21.15|320
