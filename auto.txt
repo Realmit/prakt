@@ -1,5 +1,5 @@
 №|Номер|Начальная остановка|Конечная остановка|Количество|Начальное время|Конечное время|Цена
-1|90|Depo1|LDP"Spartak2"|4|06.00|22.00|35
+1|90|Depo1|LDP"Spartak2"|5|06.00|22.00|35
 2|10|Depo2|mkr.Baltika|10|07.00|19.30|35
 3|20|Pos.Poteryaevka|TC"Volna"|3|05.30|17.30|135
 4|3|Pos.Nalchik|Pos.Lesnoe|2|04.20|22.10|350
@@ -9,7 +9,7 @@
 8|8|Depo5|mkr.Zvezda|6|07.10|19.45|50
 9|11|mkr.Yuzhniy|TC"Ocean"|4|05.45|18.20|120
 10|12|Pos.Ozero|LDP"Zapadniy"|3|04.50|21.15|320
-11|13|Pos.Rechnoy|mkr.Vostok|5|06.30|17.40|90
+11|13|Pos.Rechnoy|mkr.Vostok|6|06.30|17.40|90
 12|14|Pos.Snegiri|mkr.Aeroport|7|05.20|16.50|75
 13|15|Pos.Lugovoe|TC"Globus"|6|07.45|19.00|110
 14|16|Pos.Beregovoe|mkr.Nautilus|4|06.00|20.00|60
@@ -108,7 +108,7 @@
 107|111|Zhiloy rayon "Mirnyi"|Gorodok "Novyy"|7|05.20|17.40|75
 108|112|Avtostoyanka "Central"|Promzona "Techno"|6|07.25|18.30|95
 109|113|Selkhoz "Zemlyachka"|Derevnya Zarechnaya|3|06.00|20.50|320
-110|114|Stanitsa Staraya|TC "Innovation"|5|05.10|17.25|100
+110|114|Stanitsa Staraya|TC "Innovation"|10|05.10|17.25|100
 111|115|Derevnya Urochishche|Promzona "EcoZone"|4|04.35|21.40|315
 112|116|SNT "Berezovoe"|Zhiloy rayon "Zvezdnyi"|6|06.45|19.15|80
 113|117|Gorodok "Molodezhnyi"|Avtostoyanka "Ural"|3|07.05|20.45|325
@@ -194,4 +194,3 @@
 193|197|Gorodok "Obsidian"|Derevnya Petropavlovsk-Kamchatskiy|3|06.45|21.00|315
 194|198|Stanitsa Magadan|Zhiloy rayon "Pegmatite"|5|07.25|19.10|95
 195|199|Selkhoz "Syenite"|Promzona "Dacite"|4|05.35|18.45|65
-196|200|Avtostoyanka "Trachyte"|Derevnya Anadyr|7|06.10|18.00|70

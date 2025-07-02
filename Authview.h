@@ -1038,7 +1038,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->label7->Location = System::Drawing::Point(954, 235);
 			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(151, 35);
+			this->label7->Size = System::Drawing::Size(423, 35);
 			this->label7->TabIndex = 88;
 			this->label7->Text = L"Ячейка (,)";
 			this->label7->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
@@ -1594,12 +1594,15 @@ private: System::ComponentModel::IContainer^ components;
 	}
 }
 private: System::Void buttonsearch_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (this->ClientSize == System::Drawing::Size(1820, 530))
+		buttonaddtotable_Click(nullptr, nullptr);
 	if (this->ClientSize == System::Drawing::Size(1820, 450))
 		this->ClientSize = System::Drawing::Size(1400, 450); // 1416
 	else
 	{
 		this->ClientSize = System::Drawing::Size(1820, 450); // 1840
 		pictureBox2->Visible = false;
+		buttonaddtotable->Text = "Добавить запись";
 	}
 	if (buttonsearch->Text == "Открыть меню поиска") buttonsearch->Text = "Отмена";
 	else if (buttonsearch->Text == "Отмена") buttonsearch->Text = "Открыть меню поиска";
@@ -1815,7 +1818,7 @@ private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, Syst
 			cellValue1 = this->dataGridView1->Rows[gridRow]->Cells[e->ColumnIndex]->Value->ToString();
 			if (gridCol != 0)
 			{
-				label7->Text = String::Format(L"Ячейка ({0},{1})", origrow, origcol);
+				label7->Text = String::Format("Ячейка ({0},{1})", e->RowIndex, e->ColumnIndex);
 				textBoxeditold->Text = cellValue1;
 				label7->Visible = true;
 				label11->Visible = true;
@@ -2109,6 +2112,7 @@ private: System::Void buttonaddtotable_Click(System::Object^ sender, System::Eve
 	}
 	else
 	{
+		buttonaddtotable->Text = "Добавить запись";
 		timer1->Enabled = false;
 		pictureBox2->Visible = false;
 		label13->Visible = !label13->Visible; label14->Visible = !label14->Visible; label15->Visible = !label15->Visible;
