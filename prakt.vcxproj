@@ -161,6 +161,7 @@
     <ClInclude Include="Reg.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Auth.resx">
@@ -203,6 +204,13 @@
     <Text Include="autolongback.txt" />
     <Text Include="game.txt" />
     <Text Include="loginf.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="prakt.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo2_500x500.png" />
+    <Image Include="logo2_85x85.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
